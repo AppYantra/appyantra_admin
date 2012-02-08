@@ -1,0 +1,20 @@
+<article class="module width_quarter landing_container">
+	<header><h3>Change your password</h3></header>
+	<div class="mini_form_box">
+		<%= form_for(resource, :as => resource_name, :url => main_app.admin_password_path, :html => { :method => :put }) do |f| %>
+			<%= f.hidden_field :reset_password_token %>	
+			<fieldset class="string">
+				<%= f.label :password, "New password" %>
+				<%= f.password_field :password %>
+			</fieldset>
+			<fieldset class="string">
+				<%= f.label :password_confirmation, "Confirm new password" %>
+				<%= f.password_field :password_confirmation %>
+			</fieldset>
+			<%= f.submit "Change my password" %>
+			<div class="form_message">
+				Back to <%= render :partial => "/appyantra_admin/shared/links" %>
+			</div>
+	    <% end %>
+	</div>
+</article>

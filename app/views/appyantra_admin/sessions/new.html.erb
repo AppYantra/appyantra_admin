@@ -1,0 +1,21 @@
+<article class="module width_quarter landing_container">
+	<header><h3>Sign in</h3></header>
+	<div class="mini_form_box">
+		<%= form_for(resource, :as => resource_name, :url => main_app.admin_session_path) do |f| %>	
+			<fieldset class="string">
+				<%= f.label :email %>
+				<%= f.email_field :email %>
+			</fieldset>			 
+			<fieldset class="string">
+				<%= f.label :password %>
+				<%= f.password_field :password %>
+			</fieldset>
+			<% if devise_mapping.rememberable? -%>
+				<fieldset class="boolean">
+					<%= f.check_box :remember_me %> 	Remember me
+				</fieldset>
+			  <% end -%>
+			<%= f.submit "Sign in", class: 'alt_btn' %> <%= render :partial => "/appyantra_admin/shared/links" %>
+	    <% end %>
+	</div>
+</article>

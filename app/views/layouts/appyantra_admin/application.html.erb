@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8"/>
+	<title><%= setting_value 'site_name', 'AppYantra Admin' %> | <%= @page_title %></title>
+	  <%= stylesheet_link_tag    "appyantra_admin/application" %>
+	  <%= javascript_include_tag "appyantra_admin/application" %>
+	  <%= csrf_meta_tags %>
+	
+	<!--[if lt IE 9]>
+	<link rel="stylesheet" href="/appyantra_admin/ie.css" type="text/css" media="screen" />
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<script type="text/javascript">
+		$(document).ready(function() 
+	    	{ 
+	      	  $(".tablesorter").tablesorter(); 
+	   	 } 
+		);
+		$(document).ready(function() {
+
+			//When page loads...
+			$(".tab_content").hide(); //Hide all content
+			$("ul.tabs li:first").addClass("active").show(); //Activate first tab
+			$(".tab_content:first").show(); //Show first tab content
+
+			//On Click Event
+			$("ul.tabs li").click(function() {
+
+				$("ul.tabs li").removeClass("active"); //Remove any "active" class
+				$(this).addClass("active"); //Add "active" class to selected tab
+				$(".tab_content").hide(); //Hide all tab content
+
+				var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+				$(activeTab).fadeIn(); //Fade in the active ID content
+				return false;
+			});
+
+	    });
+    </script>
+    <script type="text/javascript">
+    	$(function(){
+	        $('.column').equalHeight();
+	        $('a.close_btn').click(function(){
+		      $(this).parent().hide();
+		    });
+	    });
+	</script>
+	<script type="text/javascript">
+		<%= yield :page_js %>    	
+	</script>
+
+</head>
+
+
+<body>
+
+	<header id="header">
+		<hgroup>
+			<h1 class="site_title"><a href="/"><%= setting_value 'site_name', 'AppYantra Admin' %></a></h1>
+			<h2 class="section_title">Dashboard</h2><div class="btn_view_site"><%= setting_value 'website_url', '#' %></div>
+		</hgroup>
+	</header> <!-- end of header bar -->
+	
+	<section id="secondary_bar">
+		<div class="user">
+			<p><%= current_admin.display_name %></p>
+		</div>
+		<div class="breadcrumbs_container">
+			<article class="breadcrumbs"><%= breadcrumb.html_safe %></article>
+		</div>
+	</section><!-- end of secondary bar -->
+	
+	<aside id="sidebar" class="column">
+		<h3>Admin</h3>
+		<ul class="toggle">
+			<li class="icn_settings"> <%= link_to 'Settings', main_app.settings_path %></li>
+			<li class="icn_security"><a href="#">Security</a></li>
+			<li class="icn_jump_back"><%= link_to 'Sign out', main_app.destroy_admin_session_path, :method => :delete %></li>
+		</ul>
+		<h3>Users</h3>
+		<ul class="toggle">
+			<li class="icn_view_users"><%= link_to 'Manage Admin Users', main_app.admin_profiles_path %></li>
+			<li class="icn_view_users"><a href="#">Manage Website Users</a></li>
+			<li class="icn_profile"><%= link_to 'Your Profile', main_app.admin_profile_path(current_admin) %></li>
+		</ul>
+		<h3>Content</h3>
+		<ul class="toggle">
+			<li class="icn_new_article"><a href="#">New Article</a></li>
+			<li class="icn_edit_article"><a href="#">Edit Articles</a></li>
+			<li class="icn_categories"><a href="#">Categories</a></li>
+			<li class="icn_tags"><a href="#">Tags</a></li>
+		</ul>		
+		<h3>Media</h3>
+		<ul class="toggle">
+			<li class="icn_folder"><a href="#">File Manager</a></li>
+			<li class="icn_photo"><a href="#">Gallery</a></li>
+			<li class="icn_audio"><a href="#">Audio</a></li>
+			<li class="icn_video"><a href="#">Video</a></li>
+		</ul>		
+		<%= render partial:"/appyantra_admin/shared/assets_list", locals:{assets: AppyantraAdmin.assets} %>
+		<footer>
+			<hr />
+			<p><strong>Copyright &copy; <%= setting_value 'copyright_year', Time.now.year.to_s %> <%= setting_value 'company_name', 'Acme Company' %></strong></p>
+			<p>Theme by <a href="http://medialoot.com/item/html5-admin-template">MediaLoot</a></p>
+		</footer>
+	</aside><!-- end of sidebar -->
+	<section id="main" class="column">	  
+	  <%- flash.each do |k, v| %>
+		<h4 class="<%= k %>"><%= v %><a class="close_btn">x</a></h4>
+	  <% end %>
+	  <%= yield %>
+	</section>
+
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+<article class="module width_3_quarter">
+<header>
+	<h3 class="tabs_involved">Your Profile</h3>
+	<div class="new_button_frame">
+	 	<%= form_tag main_app.edit_admin_profile_path(@selected_admin_user), method: "get" do %>
+			<%= submit_tag "Edit", class: "alt_btn" %>
+		<% end %>
+	</div>
+</header>
+
+<div class="tab_container">
+	<%= render partial: 'admin_user', locals: {asset_object: @selected_admin_user} %>	
+</div><!-- end of .tab_container -->
+
+</article><!-- end of settings article -->

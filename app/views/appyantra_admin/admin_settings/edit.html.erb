@@ -1,0 +1,7 @@
+<article class="module width_full">
+	<header><h3>Edit Setting (<%= @setting.entity_type %>)</h3></header>
+	<%= render partial: '/appyantra_admin/shared/formtastic_semantic_form', 
+			   locals: { form_object: @setting.entity, 
+			   			  url: main_app.update_setting_path(@setting) }
+			%>	  
+</article>

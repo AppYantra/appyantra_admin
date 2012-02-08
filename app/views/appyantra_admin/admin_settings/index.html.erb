@@ -1,0 +1,45 @@
+<article class="module width_3_quarter">
+<header>
+	<h3 class="tabs_involved">Settings</h3>
+</header>
+
+<div class="tab_container">
+	<div id="tab1" class="tab_content">
+		<% if @settings.each do |setting| %>
+		  <%= div_for setting do %>
+		    <h4><%= setting.display_name.humanize %></h4>
+			<div class="setting_entity">
+				<%= render partial: "/appyantra_admin/shared/types/#{setting.entity_type.downcase}", locals: { entity: setting.entity} %>
+				<%= link_to image_tag('/assets/appyantra_admin/icn_edit.png', title: 'Edit'), 
+				            main_app.edit_setting_path(setting)
+				  %> 
+				<%= link_to image_tag('/assets/appyantra_admin/trash.png', title: 'Delete'), main_app.delete_setting_path(setting), confirm: 'Are you sure?', method: :delete %>
+			</div>
+		  <% end %>
+		<% end.empty? %>
+			<div class="setting_entity"><h4>No settings created.</h4></div>
+		<% end %>
+	</div><!-- end of #tab1 -->
+	
+</div><!-- end of .tab_container -->
+
+</article><!-- end of settings article -->
+
+<article class="module width_quarter">
+	<header><h3>Add a new setting</h3></header>
+	<div class="mini_form_box">
+		<%= form_tag main_app.new_setting_path, method: "post", class: "new_setting_form" do %>
+			<fieldset class="string">
+				<%= label_tag :setting_name, "Name"%>
+				<%= text_field_tag :setting_name %>
+			</fieldset>			 
+			<fieldset class="select">
+				<%= label_tag :entity_type, "Type"%>
+				<%= select_tag :entity_type, options_for_select(['Text', 'Link']) %>
+			</fieldset>
+			<%= submit_tag "Add", class: 'alt_btn' %>
+	    <% end %>
+	</div>
+</article>
+
+<div class="clear"></div>

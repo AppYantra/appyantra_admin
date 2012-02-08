@@ -1,0 +1,69 @@
+<% content_for :page_js do %>
+	<% if @asset_object %>
+	  $(function(){
+	      $.fn.highlightItem('<%= @asset_object.id %>');
+	  });
+	<% end %>
+<% end %>
+<article class="module width_3_quarter">
+<header><h3 class="tabs_involved">List of <%= @asset_name.pluralize %></h3>
+	<div class="new_button_frame">
+	 	<%= form_tag "/appyantra_admin/assets/#{ @asset_name }/new", method: "get" do %>
+			<%= submit_tag "Create New", class: "alt_btn" %>
+		<% end %>
+	</div>
+</header>
+
+<div class="tab_container">
+	<div id="tab1" class="tab_content">
+	<table class="tablesorter" cellspacing="0"> 
+	<thead> 
+		<tr>
+			<th><input type="checkbox"></th>
+			<th>Id</th>
+			<th width="280px"><%= asset_display_field @asset_name %></th>
+			<th>Created At</th>
+			<th>Updated At</th>
+			<th>Actions</th>
+		</tr> 
+	</thead> 
+	<tbody> 
+		<% if @asset_objects.each do |asset_object| %>
+			<tr id="asset_item_<%= asset_object.id %>"> 
+	 				<td><input type="checkbox"></td> 
+	  				<td><%= asset_object.id %></td> 
+	  				<td><%= asset_display_name asset_object %></td>
+	  				<td><%= display_date asset_object.created_at %></td>
+	                <td><%= display_date asset_object.updated_at %></td> 
+	  				<td>
+						<%= link_to image_tag('/assets/appyantra_admin/view.png', title: 'View'),
+						            "/appyantra_admin/assets/#{@asset_name}/#{asset_object.id}/display",
+						            remote: true
+						  %>
+						<%= link_to image_tag('/assets/appyantra_admin/icn_edit.png', title: 'Edit'),
+						            "/appyantra_admin/assets/#{@asset_name}/#{asset_object.id}/edit"
+						  %>
+						<%= link_to image_tag('/assets/appyantra_admin/trash.png', title: 'Delete'), "/appyantra_admin/assets/#{@asset_name}/#{asset_object.id}", confirm: 'Are you sure?', method: :delete %>
+					</td> 
+			</tr>
+		<% end.empty? %>
+			<tr>
+				<td></td>
+				<td colspan="5"><strong><%= @asset_name %></strong> has no assets!</td> 
+			</tr>
+		<% end %>  
+	</tbody> 
+	</table>
+	</div><!-- end of #tab1 -->
+	
+</div><!-- end of .tab_container -->
+
+</article><!-- end of article -->
+
+<div id="display_asset_item">
+	<% if @asset_object %>
+	  <%= render partial: '/appyantra_admin/shared/asset_item', locals: {asset_object: @asset_object }%>
+	<% end %>
+</div>
+
+<div class="clear"></div>

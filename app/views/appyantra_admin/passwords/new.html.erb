@@ -1,0 +1,15 @@
+<article class="module width_quarter landing_container">
+	<header><h3>Forgot your password?</h3></header>
+	<div class="mini_form_box">
+		<%= form_for(resource, :as => resource_name, :url => main_app.admin_password_path, :html => { :method => :post }) do |f| %>	
+			<fieldset class="string">
+				<%= f.label :email %>
+				<%= f.email_field :email %>
+			</fieldset>
+			<%= f.submit "Send me reset password instructions" %>
+			<div class="form_message">
+				Back to <%= render :partial => "/appyantra_admin/shared/links" %>
+			</div>
+	    <% end %>
+	</div>
+</article>
