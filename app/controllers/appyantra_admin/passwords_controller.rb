@@ -1,7 +1,6 @@
 module AppyantraAdmin
   class PasswordsController < Devise::PasswordsController
 
-    #layout '/appyantra_admin/application'
     layout "/appyantra_admin/landing_page"
     
     private

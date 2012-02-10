@@ -49,7 +49,7 @@ module AppyantraAdmin
   
     def edit
       @admin_user = Admin.find(params[:id])
-      @page_title = 'Admin User | ' + @selected_admin_user.display_name
+      @page_title = 'Admin User | ' + @admin_user.display_name
       add_breadcrumb([@admin_user.display_name, main_app.admin_profile_url(@admin_user)])
       current_breadcrumb 'Edit'
       render 'edit'
@@ -76,7 +76,7 @@ module AppyantraAdmin
       # TODO Fix auto logout issue when password is changed
       sign_in(current_admin, :bypass => true)
       flash[:notice] = "Password was successfully updated."
-      redirect_to main_app.admin_profile_path
+      redirect_to main_app.admin_profiles_path
       # TODO handle errors
     end
     

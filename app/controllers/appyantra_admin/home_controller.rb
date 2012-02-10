@@ -8,7 +8,7 @@ module AppyantraAdmin
         @page_title = 'Home'
         add_breadcrumb([@page_title, main_app.root_url])
         current_breadcrumb 'Dashboard'
-        @assets = ["Spot", "Food", "Place", "Address", "Event", "Activity"]
+        @assets = AppyantraAdmin.assets
         @page_title = 'Home'
       else
         redirect_to main_app.new_admin_session_path

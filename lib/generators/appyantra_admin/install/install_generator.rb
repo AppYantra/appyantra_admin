@@ -10,9 +10,13 @@ class AppyantraAdmin::InstallGenerator < Rails::Generators::Base
     copy_migrations
     add_appyantra_admin_routes
     puts "After running the migrations, you need to do the following: "
-    puts "(1) Modify the initializer configurations"
-    puts "(2) Create an admin user by running:"
+    puts "(1) Modify the initializer configurations --> config/initializers/appyantra_admin.rb"
+    puts "(2) Run Migrations"
+    puts "(3) Create an admin user by running:"
     puts "rake appyantra_admin:create_admin email='EMAIL' first_name='FIRST_NAME' last_name='LAST_NAME'"
+    puts "(4) Create basic application settings by running:"
+    puts "rake appyantra_admin:setup_admin"
+    puts "(5) Delete public/index.html"
   end
 
   private

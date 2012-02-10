@@ -24,11 +24,13 @@ module AppyantraAdmin::ApplicationHelper
     breadcrumb_html
   end
 
+  # displays the name of the first field of a model
   def asset_display_field(asset_class_name)
     asset_class = eval asset_class_name
     asset_class.column_names[1].capitalize
   end
 
+  # displays the value of the first field of a model object (asset)
   def asset_display_name(asset)
     field_name = asset.class.column_names[1]
     asset[field_name]

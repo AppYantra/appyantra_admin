@@ -6,7 +6,7 @@ class CreateLinks < ActiveRecord::Migration
       t.string :href
       t.string :rel
       t.string :target
-      t.string :type
+      t.string :link_type
       t.string :title
 
       t.timestamps

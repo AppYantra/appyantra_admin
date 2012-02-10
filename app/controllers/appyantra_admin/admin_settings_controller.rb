@@ -20,7 +20,7 @@ module AppyantraAdmin
     end
     
     def create
-      type_object_name = get_object_name @type_class
+      type_object_name = get_object_name @type_class # e.g. Link -> link
       type_object = @type_class.new(params[type_object_name.to_sym])  
       # TODO set name as slug  
       AdminSetting.create({ name: @setting_name, display_name: @setting_name, entity_type: @entity_type, entity_id: type_object.id }) if type_object.save #TODO error handling    
@@ -71,8 +71,8 @@ module AppyantraAdmin
     private
     
     def init_type
-      @setting_name = params[:setting_name]
-      @entity_type = params[:entity_type]
+      @setting_name = params[:setting_name] # e.g. website_url
+      @entity_type = params[:entity_type] # e.g. Link
       @type_class = eval @entity_type
     end
   
