@@ -1,5 +1,7 @@
 module AppyantraAdmin
   class ProfilesController < ApplicationController
+
+    include AppyantraAdmin::Utils
     
     before_filter :authenticate_admin!
     
@@ -23,8 +25,9 @@ module AppyantraAdmin
     def create
       selected_admin_user = Admin.new(params[:admin_user])
       # TODO random password
-      selected_admin_user.password = 'test1234'
-      selected_admin_user.password_confirmation = 'test1234'
+      password = random_password
+      selected_admin_user.password = password
+      selected_admin_user.password_confirmation = password
       respond_to do |format|
         if selected_admin_user.save
           format.html do |format|

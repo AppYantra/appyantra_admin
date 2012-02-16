@@ -1,0 +1,11 @@
+%article.module.width_quarter.landing_container
+  %header
+    %h3 Forgot your password?
+  .mini_form_box
+    = form_for(resource, :as => resource_name, :url => main_app.admin_password_path, :html => { :method => :post }) do |f|
+      %fieldset.string
+        = f.label :email
+        = f.email_field :email
+      = f.submit "Send me reset password instructions"
+      .form_message
+        Back to #{render :partial => "/appyantra_admin/shared/links"}

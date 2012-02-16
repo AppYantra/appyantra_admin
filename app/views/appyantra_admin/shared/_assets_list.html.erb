@@ -1,8 +1,0 @@
-<h3>Assets</h3>
-<ul class="toggle">
-  <% if assets.each do |asset| %>
-    <li class="icn_folder"><%= link_to asset, "/appyantra_admin/assets/#{asset}" %></li>
-  <% end.empty? %>
-    <li>No assets configured.</li>
-  <% end %>
-</ul>

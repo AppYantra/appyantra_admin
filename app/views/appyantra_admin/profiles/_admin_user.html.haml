@@ -1,0 +1,11 @@
+%article.module.width_quarter
+  #tab1.tab_content.show_section
+    %h4 Name
+    .profile_attribute
+      = @selected_admin_user.first_name
+      = @selected_admin_user.last_name
+    %h4 Email
+    .profile_attribute
+      = @selected_admin_user.email
+  / end of #tab1
+/ end of display item article

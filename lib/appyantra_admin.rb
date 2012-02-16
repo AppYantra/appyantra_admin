@@ -1,5 +1,7 @@
 require 'devise'
 require 'formtastic'
+require 'haml'
+require 'appyantra_admin/utils' if defined?(Rails)
 require "appyantra_admin/engine" if defined?(Rails)
 
 module AppyantraAdmin

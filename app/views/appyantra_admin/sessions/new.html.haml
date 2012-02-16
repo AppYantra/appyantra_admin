@@ -1,0 +1,17 @@
+%article.module.width_quarter.landing_container
+  %header
+    %h3 Sign in
+  .mini_form_box
+    = form_for(resource, :as => resource_name, :url => main_app.admin_session_path) do |f|
+      %fieldset.string
+        = f.label :email
+        = f.email_field :email
+      %fieldset.string
+        = f.label :password
+        = f.password_field :password
+      - if devise_mapping.rememberable?
+        %fieldset.boolean
+          = f.check_box :remember_me
+          Remember me
+      = f.submit "Sign in", class: 'alt_btn'
+      = render :partial => "/appyantra_admin/shared/links"

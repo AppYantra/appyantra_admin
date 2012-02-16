@@ -1,7 +1,0 @@
-<article class="module width_full">
-	<header><h3>Edit <%= @asset_name %></h3></header>
-	<%= render partial: '/appyantra_admin/shared/formtastic_semantic_form', 
-			   locals: {form_object: @asset_object, 
-			   			  url: "/appyantra_admin/assets/#{@asset_name}/#{@asset_object.id}"}
-			%>		  
-</article>

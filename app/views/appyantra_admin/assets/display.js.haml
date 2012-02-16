@@ -1,0 +1,3 @@
+$.fn.highlightItem('#{@asset_object.id}');
+$('div#display_asset_item').html("#{escape_javascript(render partial: '/appyantra_admin/shared/asset_item', locals: {asset_object: @asset_object})}");
+$('div#display_asset_item').effect('highlight');
