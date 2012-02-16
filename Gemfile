@@ -8,6 +8,11 @@ gemspec
 gem "jquery-rails"
 gem 'formtastic', '~> 2.0.2'
 gem 'devise', '~> 1.5.3'
+gem 'haml-rails'
+
+group :development do
+  gem 'pg'
+end
 
 
 # Declare any dependencies that are still in development here instead of in

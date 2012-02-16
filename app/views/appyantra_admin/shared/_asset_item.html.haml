@@ -1,0 +1,15 @@
+.article
+  %article.module.width_quarter
+    %header
+      %h3
+        = @asset_name
+        Id #{@asset_object.id}
+    .message_list
+      .module_content
+        - @asset_object.attributes.each do |key,value|
+          .message
+            %p= value
+            %p.field_name
+              %strong= key
+    %footer
+  / end of display item article
