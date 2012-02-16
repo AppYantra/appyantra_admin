@@ -1,0 +1,30 @@
+!!! 5
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %title
+      = setting_value 'site_name', 'AppYantra Admin'
+      | #{@page_title}
+    = stylesheet_link_tag    "appyantra_admin/application"
+    = javascript_include_tag "appyantra_admin/application"
+    = csrf_meta_tags
+    /[if lt IE 9]
+      <link rel="stylesheet" href="appyantra_admin/ie.css" type="text/css" media="screen" />
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    :javascript
+      $(function(){
+        $('a.close_btn').click(function(){
+          $(this).parent().hide();
+        });
+      });
+    %body
+    %header#header
+      %hgroup
+        %h2.section_title.landing_header= setting_value 'site_name', 'AppYantra Admin'
+    / end of header bar
+    %section#main.column.landing_alert
+      - flash.each do |k, v|
+        %h4{:class => k}
+          = v
+          %a.close_btn x
+      = yield

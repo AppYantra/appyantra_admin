@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 3.1.3"
   s.add_dependency 'warden'
+  s.add_dependency 'haml-rails'
   s.add_dependency 'devise', '~>1.5.3'
   s.add_dependency 'formtastic', '~> 2.0.2'
 end

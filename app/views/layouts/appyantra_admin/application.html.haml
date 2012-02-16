@@ -1,0 +1,112 @@
+!!! 5
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %title
+      = setting_value 'site_name', 'AppYantra Admin'
+      | #{@page_title}
+    = stylesheet_link_tag    "appyantra_admin/application"
+    = javascript_include_tag "appyantra_admin/application"
+    = csrf_meta_tags
+    /[if lt IE 9]
+      <link rel="stylesheet" href="/appyantra_admin/ie.css" type="text/css" media="screen" />
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    :javascript
+      $(document).ready(function()
+          {
+            $(".tablesorter").tablesorter();
+       }
+      );
+      $(document).ready(function() {
+
+          //When page loads...
+          $(".tab_content").hide(); //Hide all content
+          $("ul.tabs li:first").addClass("active").show(); //Activate first tab
+          $(".tab_content:first").show(); //Show first tab content
+
+          //On Click Event
+          $("ul.tabs li").click(function() {
+
+              $("ul.tabs li").removeClass("active"); //Remove any "active" class
+              $(this).addClass("active"); //Add "active" class to selected tab
+              $(".tab_content").hide(); //Hide all tab content
+
+              var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+              $(activeTab).fadeIn(); //Fade in the active ID content
+              return false;
+          });
+
+      });
+    :javascript
+      $(function(){
+          $('.column').equalHeight();
+          $('a.close_btn').click(function(){
+            $(this).parent().hide();
+          });
+      });
+    :javascript
+      #{yield :page_js}
+  %body
+    %header#header
+      %hgroup
+        %h1.site_title
+          %a{:href => "/"}= setting_value 'site_name', 'AppYantra Admin'
+        %h2.section_title Dashboard
+        .btn_view_site= setting_value 'website_url', '#'
+    / end of header bar
+    %section#secondary_bar
+      .user
+        %p= current_admin.display_name
+      .breadcrumbs_container
+        %article.breadcrumbs= breadcrumb.html_safe
+    / end of secondary bar
+    %aside#sidebar.column
+      %h3 Admin
+      %ul.toggle
+        %li.icn_settings
+          = link_to 'Settings', main_app.settings_path
+        %li.icn_security
+          %a{:href => "#"} Security
+        %li.icn_jump_back= link_to 'Sign out', main_app.destroy_admin_session_path, :method => :delete
+      %h3 Users
+      %ul.toggle
+        %li.icn_view_users= link_to 'Manage Admin Users', main_app.admin_profiles_path
+        %li.icn_view_users
+          %a{:href => "#"} Manage Website Users
+        %li.icn_profile= link_to 'Your Profile', main_app.admin_profile_path(current_admin)
+      %h3 Content
+      %ul.toggle
+        %li.icn_new_article
+          %a{:href => "#"} New Article
+        %li.icn_edit_article
+          %a{:href => "#"} Edit Articles
+        %li.icn_categories
+          %a{:href => "#"} Categories
+        %li.icn_tags
+          %a{:href => "#"} Tags
+      %h3 Media
+      %ul.toggle
+        %li.icn_folder
+          %a{:href => "#"} File Manager
+        %li.icn_photo
+          %a{:href => "#"} Gallery
+        %li.icn_audio
+          %a{:href => "#"} Audio
+        %li.icn_video
+          %a{:href => "#"} Video
+      = render partial:"/appyantra_admin/shared/assets_list", locals:{assets: AppyantraAdmin.assets}
+      %footer
+        %hr/
+        %p
+          %strong
+            Copyright &copy; #{setting_value 'copyright_year', Time.now.year.to_s} #{setting_value 'company_name', 'Acme Company'}
+        %p
+          Theme by
+          %a{:href => "http://medialoot.com/item/html5-admin-template"} MediaLoot
+    / end of sidebar
+    %section#main.column
+      - flash.each do |k, v|
+        %h4{:class => k}
+          = v
+          %a.close_btn x
+      = yield

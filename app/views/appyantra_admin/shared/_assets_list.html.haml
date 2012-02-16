@@ -1,0 +1,6 @@
+%h3 Assets
+%ul.toggle
+  - assets.each do |asset|
+    %li.icn_folder= link_to asset, "/appyantra_admin/assets/#{asset}"
+  - if assets.empty?
+    %li No assets configured.

@@ -1,0 +1,10 @@
+%article.module.width_3_quarter
+  %header
+    %h3.tabs_involved Your Profile
+    .new_button_frame
+      = form_tag main_app.edit_admin_profile_path(@selected_admin_user), method: "get" do
+        = submit_tag "Edit", class: "alt_btn"
+  .tab_container
+    = render partial: 'admin_user', locals: {asset_object: @selected_admin_user}
+  / end of .tab_container
+/ end of settings article
