@@ -17,3 +17,5 @@ db/migrate/*_create_admin_settings.rb
 db/migrate/*_add_name_to_admins.rb
 db/migrate/*_create_texts.rb
 db/migrate/*_devise_create_admins.rb
+db/migrate/*_devise_create_users.rb
+db/migrate/*_add_name_to_users.rb

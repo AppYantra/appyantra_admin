@@ -1,0 +1,35 @@
+.grid_8
+  .form_box
+    = form_for(resource, :as => resource_name, :url => user_registration_path, :html => { :method => :post }) do |f|
+      %h3 Sign up
+      .errors
+        = devise_error_messages!
+      .hr.dotted.clearfix
+      %ul
+        %li.clearfix
+          = f.label :email
+          = f.email_field :email
+        %li.clearfix
+          = f.label :first_name
+          = f.text_field :first_name
+        %li.clearfix
+          = f.label :last_name
+          = f.text_field :last_name
+        %li.clearfix
+          = f.label :password
+          = f.password_field :password
+        %li.clearfix
+          = f.label :password_confirmation
+          = f.password_field :password_confirmation
+        %li.clearfix
+          #button
+            = f.submit "Sign up", id: 'send_message', class: 'button'
+            .clear
+  .clear
+  .links
+    = link_to "Sign in", main_app.new_user_session_path
+    |
+    = link_to "Sign up", main_app.new_user_registration_path
+    |
+    = link_to "Forgot your password?", main_app.new_user_password_path
+  .clear_gap

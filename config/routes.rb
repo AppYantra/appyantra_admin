@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+
   # To use this engine in your app use the following
   # mount AppyantraAdmin::Engine => "/appyantra_admin"
   match '/appyantra_admin' => 'appyantra_admin/home#index', :as => :appyantra_admin_home, :via => :get
+
+  devise_for :users, path: 'users'
   
-  devise_for :admin, :path => 'appyantra_admin', :controllers => { :sessions => 'appyantra_admin/sessions', :passwords => 'appyantra_admin/passwords' }
+  devise_for :admin, path: 'appyantra_admin', controllers: { :sessions => 'appyantra_admin/sessions', passwords: 'appyantra_admin/passwords' }
     # match '/appyantra_admin/sign_in' => 'appyantra_admin/sessions#new', :as => :new_admin_session, :via => :get
     #     match '/appyantra_admin/sign_in' => 'appyantra_admin/sessions#create', :as => :admin_session, :via => :post
     #     match '/appyantra_admin/sign_out' => 'appyantra_admin/sessions#destroy', :as => :destroy_admin_session, :via => :delete
@@ -39,4 +42,10 @@ Rails.application.routes.draw do
   match '/appyantra_admin/settings/:id/edit' => 'appyantra_admin/admin_settings#edit', :as => :edit_setting, :via => :get
   match '/appyantra_admin/settings/:id' => 'appyantra_admin/admin_settings#update', :as => :update_setting, :via => :put
   match '/appyantra_admin/settings/:id' => 'appyantra_admin/admin_settings#destroy', :as => :delete_setting, :via => :delete
+
+  # users
+  namespace :appyantra_admin do
+    resources :users
+  end
+  match '/appyantra_admin/users/:id/password' => 'appyantra_admin/users#update_password', :as => :update_user_password, :via => :put
 end

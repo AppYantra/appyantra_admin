@@ -311,6 +311,9 @@ background: url(/assets/appyantra_admin/icn_tags.png) no-repeat center left;
 background: url(/assets/appyantra_admin/icn_add_user.png) no-repeat center left;
 }
 #sidebar li.icn_view_users a {
+    background: url(/assets/appyantra_admin/icn_view_users.png) no-repeat center left;
+}
+#sidebar li.icn_view_admins a {
 background: url(/assets/appyantra_admin/icn_view_users.png) no-repeat center left;
 }
 #sidebar li.icn_profile a {
