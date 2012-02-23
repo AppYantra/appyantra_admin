@@ -1,0 +1,10 @@
+%article.module.width_3_quarter
+  %header
+    %h3.tabs_involved User Profile
+    .new_button_frame
+      = form_tag main_app.edit_appyantra_admin_user_path(@selected_user), method: "get" do
+        = submit_tag "Edit", class: "alt_btn"
+  .tab_container
+    = render partial: 'user', locals: {user: @selected_user}
+  / end of .tab_container
+/ end of settings article

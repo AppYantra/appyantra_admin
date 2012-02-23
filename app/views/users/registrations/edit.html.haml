@@ -1,0 +1,42 @@
+.grid_8
+  .form_box
+    = form_for(resource, :as => resource_name, :url => user_registration_path, :html => { :method => :put }) do |f|
+      %h3 Edit #{resource_name.to_s.humanize}
+      .errors
+        = devise_error_messages!
+      .hr.dotted.clearfix
+      %ul
+        %li.clearfix
+          = f.label :email
+          = f.email_field :email
+        %li.clearfix
+          = f.label :first_name
+          = f.text_field :first_name
+        %li.clearfix
+          = f.label :last_name
+          = f.text_field :last_name
+        %li.clearfix
+          = f.label :password
+          %i (leave blank if you don't want to change it)
+          = f.password_field :password
+        %li.clearfix
+          = f.label :password_confirmation
+          = f.password_field :password_confirmation
+        %li.clearfix
+          = f.label :current_password
+          %i (we need your current password to confirm your changes)
+          = f.password_field :current_password
+        %li.clearfix
+          #button
+            = f.submit "Update", id: 'send_message', class: 'button'
+            .clear
+.clear_gap
+.grid_8
+  %h3 Cancel my account
+  .hr.dotted.clearfix
+  %p
+    Want to cancel your account? #{link_to "Cancel my account", user_registration_path, :confirm => "Are you sure?", :method => :delete}.
+  = link_to "Back", :back
+  .clear_gap
+
+

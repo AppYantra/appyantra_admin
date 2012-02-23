@@ -1,8 +1,17 @@
 FactoryGirl.define do
+
   factory :admin do
     first_name 'Speedy'
     last_name  'Gonzalves'
-    email 'speedy@appyantra.com'
+    sequence(:email) { |n| "admin#{n}@example.com" }
+    password 'admin123'
+    password_confirmation 'admin123'
+  end
+
+  factory :user do
+    first_name 'Stan'
+    last_name  'Marsh'
+    sequence(:email) { |n| "user#{n}@example.com" }
     password 'admin123'
     password_confirmation 'admin123'
   end
@@ -21,7 +30,7 @@ FactoryGirl.define do
     name 'company_name'
     value 'AppYantra'
   end
-  
+
   factory :admin_setting do
     name 'website_url'
     display_name 'Website URL'

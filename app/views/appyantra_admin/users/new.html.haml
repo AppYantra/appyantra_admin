@@ -1,0 +1,6 @@
+%article.module.width_quarter
+  %header
+    %h3 Create New User
+  = render partial: 'form',                                  |
+    locals: { user: @user,                                     |
+    url: main_app.appyantra_admin_users_path(@user), action_label: 'Create' } |

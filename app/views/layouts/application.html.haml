@@ -1,0 +1,95 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title Company name | Home page title
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    = stylesheet_link_tag    "website/application"
+    = javascript_include_tag "website/application"
+    = csrf_meta_tags
+    :javascript
+      $(document).ready(function() { //Start up our Featured Project Carosuel
+      	$('#featured ul').roundabout({
+      		easing: 'easeOutInCirc',
+      		duration: 600
+      	});
+      });
+    :javascript
+      $(function(){
+          $('a.close_btn').click(function(){
+            $(this).parent().hide();
+          });
+      });
+    /[if IE 6]
+      <script src="/assets/website/ie/DD_belatedPNG_0.0.8a-min.js"></script>
+      <script>
+      \/* EXAMPLE */
+      DD_belatedPNG.fix('.button');
+
+      \/* string argument can be any CSS selector */
+      \/* .png_bg example is unnecessary */
+      \/* change it to what suits you! */
+      </script>
+  %body
+    #wrapper.container_12.clearfix
+      / Text Logo
+      %h1#logo.grid_4
+        %a{:href => "/"} The Website
+      / Navigation Menu
+      %ul#navigation.grid_8
+        %li
+          %a{:href => "#"}
+            %span.meta Get in touch
+            = succeed "Contact Us" do
+              %br/
+        %li
+          %a{:href => "#"}
+            %span.meta Latest news
+            = succeed "Blog" do
+              %br/
+        %li
+          %a{:href => "#"}
+            %span.meta Our latest work
+            = succeed "Portfolio" do
+              %br/
+        %li
+          %a{:href => "#"}
+            %span.meta Who are we?
+            = succeed "About" do
+              %br/
+        %li
+          %a.current{:href => "#"}
+            %span.meta Homepage
+            = succeed "Home" do
+              %br/
+      .login_box
+        - if user_signed_in?
+          Welcome
+          = current_user.display_name
+          |
+          = link_to 'Sign out', main_app.destroy_user_session_path, :method => :delete
+          |
+          = link_to 'My Account', main_app.edit_user_registration_path
+        - else
+          = link_to 'Sign in', main_app.new_user_session_path
+          |
+          = link_to 'Sign up', main_app.new_user_registration_path
+      .hr.grid_12
+      .clear
+      - flash.each do |k, v|
+        .alert_message
+          = v
+          %a.close_btn x  
+      .clear
+      = yield
+      .hr.grid_12.clearfix  
+      / Footer
+      %p.grid_12.footer.clearfix
+        %span.float
+          %b © Copyright
+          %a{:href => ""} QwibbleDesigns
+          |
+          %a{href: 'http://www.csstemplatesfree.org/aurelius.html'} Aurelius theme taken from CSS Templates
+
+          / remove upon purchase.
+        %a.float.right{:href => "#"} top
+    / end wrapper

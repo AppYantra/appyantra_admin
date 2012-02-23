@@ -6,8 +6,8 @@ module AppyantraAdmin
     before_filter :authenticate_admin!
     
     # breadcrumbs
-    before_filter(only: [:index, :new, :edit, :show]) { |c| c.add_breadcrumb(['Home', main_app.appyantra_admin_home_url])}
-    before_filter(only: [:new, :edit, :show]) { |c| c.add_breadcrumb(['Admin Profiles', main_app.admin_profiles_url])}
+    before_filter(only: [:index, :new, :edit, :show]) { |c| c.add_breadcrumb(['Home', main_app.appyantra_admin_home_path])}
+    before_filter(only: [:new, :edit, :show]) { |c| c.add_breadcrumb(['Admin Profiles', main_app.admin_profiles_path])}
     
     def index
       @page_title = 'Admin Profiles'
@@ -53,7 +53,7 @@ module AppyantraAdmin
     def edit
       @admin_user = Admin.find(params[:id])
       @page_title = 'Admin User | ' + @admin_user.display_name
-      add_breadcrumb([@admin_user.display_name, main_app.admin_profile_url(@admin_user)])
+      add_breadcrumb([@admin_user.display_name, main_app.admin_profile_path(@admin_user)])
       current_breadcrumb 'Edit'
       render 'edit'
     end

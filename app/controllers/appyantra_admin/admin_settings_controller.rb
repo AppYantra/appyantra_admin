@@ -4,8 +4,8 @@ module AppyantraAdmin
     before_filter :authenticate_admin!
     before_filter :init_type, only: [:create, :new]
     # breadcrumbs
-    before_filter(only: [:index, :new, :edit]) { |c| c.add_breadcrumb(['Home', main_app.appyantra_admin_home_url])}
-    before_filter(only: [:new, :edit]) { |c| c.add_breadcrumb(['Settings', main_app.settings_url])}
+    before_filter(only: [:index, :new, :edit]) { |c| c.add_breadcrumb(['Home', main_app.appyantra_admin_home_path])}
+    before_filter(only: [:new, :edit]) { |c| c.add_breadcrumb(['Settings', main_app.settings_path])}
     
     def index
       @page_title = 'Settings'

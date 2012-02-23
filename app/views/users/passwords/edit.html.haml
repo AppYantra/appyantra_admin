@@ -1,0 +1,31 @@
+.grid_8
+  .form_box
+    = form_for(resource, :as => resource_name, :url => user_password_path, :html => { :method => :put }) do |f|
+      %h3 Change your password
+      .errors
+        = devise_error_messages!
+      = f.hidden_field :reset_password_token
+      .hr.dotted.clearfix
+      %ul
+        %li.clearfix
+          = f.label :password, "New password"
+          = f.password_field :password
+          .clear
+        %li.clearfix
+          = f.label :password_confirmation, "Confirm new password"
+          = f.password_field :password_confirmation
+          .clear
+        %li.clearfix
+          #button
+            = f.submit "Change my password", id: 'send_message', class: 'button'
+            .clear
+
+  .links
+    = link_to "Sign in", main_app.new_user_session_path
+    |
+    = link_to "Sign up", main_app.new_user_registration_path
+    |
+    = link_to "Forgot your password?", main_app.new_user_password_path
+  .clear_gap
+
+

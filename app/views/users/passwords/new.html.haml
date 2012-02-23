@@ -1,0 +1,22 @@
+.grid_8
+  .form_box
+    = form_for(resource, :as => resource_name, :url => user_password_path, :html => { :method => :post }) do |f|
+      %h3 Forgot your password?
+      .errors
+        = devise_error_messages!
+      = f.hidden_field :reset_password_token
+      .hr.dotted.clearfix
+      %ul
+        %li.clearfix
+          = f.label :email
+          = f.email_field :email
+          .clear
+        %li.clearfix
+          #button
+            = f.submit "Reset", id: 'send_message', class: 'button'
+            .clear
+
+  .clear
+  .links
+    Reset password instructions will be sent to your mail
+  .clear_gap
