@@ -1,0 +1,12 @@
+.mini_form_box
+  = form_for(user, as: :user, url: url) do |f|
+    %fieldset.string
+      = f.label :first_name
+      = f.text_field :first_name
+    %fieldset.string
+      = f.label :last_name
+      = f.text_field :last_name
+    %fieldset.string
+      = f.label :email
+      = f.email_field :email
+    = f.submit action_label, class: 'alt_btn'

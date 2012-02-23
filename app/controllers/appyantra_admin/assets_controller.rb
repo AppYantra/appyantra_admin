@@ -3,7 +3,7 @@ module AppyantraAdmin
     before_filter :authenticate_admin!
     before_filter :set_asset
     # breadcrumbs
-    before_filter(only: [:show, :new, :edit]) { |c| c.add_breadcrumb(['Home', main_app.appyantra_admin_home_url])}
+    before_filter(only: [:show, :new, :edit]) { |c| c.add_breadcrumb(['Home', main_app.appyantra_admin_home_path])}
     before_filter(only: [:new, :edit]) { |c| c.add_breadcrumb([@asset_name.pluralize, "/appyantra_admin/assets/#{@asset_name}"])}
 
     def show

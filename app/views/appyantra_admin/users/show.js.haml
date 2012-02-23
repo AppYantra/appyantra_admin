@@ -1,0 +1,3 @@
+$.fn.highlightItem('#{@selected_user.id}');
+$('div#display_asset_item').html("#{escape_javascript(render partial: 'user', locals: {user: @selected_user})}");
+$('div#display_asset_item').effect('highlight');

@@ -1,0 +1,56 @@
+- content_for :page_js do
+  - if @selected_user
+    $(function(){
+    $.fn.highlightItem('#{@selected_user.id}');
+    });
+%article.module.width_3_quarter
+  %header
+    %h3.tabs_involved Website Users
+    .new_button_frame
+      = form_tag main_app.new_appyantra_admin_user_path, method: "get" do
+        = submit_tag "Create New", class: "alt_btn"
+  .tab_container
+    #tab1.tab_content
+      %table.tablesorter{:cellspacing => "0"}
+        %thead
+          %tr
+            %th
+              %input{:type => "checkbox"}/
+            %th Id
+            %th{:width => "280px"} Name
+            %th Email
+            %th Created At
+            %th Actions
+        %tbody
+          - @users.each do |user|
+            %tr{:id => "asset_item_#{user.id}"}
+              %td
+                %input{:type => "checkbox"}/
+              %td= user.id
+              %td
+                = user.first_name
+                = user.last_name
+              %td= user.email
+              %td= display_date user.updated_at
+              %td
+                = link_to image_tag('/assets/appyantra_admin/view.png', title: 'View'), |
+                  main_app.appyantra_admin_user_path(user),                              |
+                  remote: true                                                          |
+                -#
+                = link_to image_tag('/assets/appyantra_admin/icn_edit.png', title: 'Edit'), |
+                  main_app.edit_appyantra_admin_user_path(user)                              |
+                - if current_admin != user
+                  = link_to image_tag('/assets/appyantra_admin/trash.png', title: 'Delete'),                  |
+                    main_app.appyantra_admin_user_path(user), confirm: 'Are you sure?', method: :delete |
+          - if @users && @users.empty?
+            %tr
+              %td
+              %td{ colspan: 4}
+                No users found.
+    / end of #tab1
+  / end of .tab_container
+/ end of article
+#display_asset_item
+  - if @selected_user
+    = render partial: '/appyantra_admin/shared/asset_item', locals: {asset_object: @selected_user }
+.clear

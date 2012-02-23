@@ -4,12 +4,12 @@ describe "Admin User Authentication" do
 
   describe "User lands on the Home page" do
     it "redirects to the login page" do
-      get root_path
+      get appyantra_admin_home_path
       response.should redirect_to(new_admin_session_path)
     end
 
     it "opens the Sign-in page" do
-      visit root_path
+      visit appyantra_admin_home_path
       within "article.module header h3" do
         page.should have_content("Sign in")
       end

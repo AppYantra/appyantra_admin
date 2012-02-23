@@ -1,0 +1,18 @@
+%article.module.width_quarter
+  %header
+    %h3 Edit User Profile
+  = render partial: 'form',                                          |
+    locals: { user: @user,                                             |
+    url: main_app.appyantra_admin_user_path(@user), action_label: 'Update' } |
+%article.module.width_quarter
+  %header
+    %h3 Change password
+  .mini_form_box
+    = form_for(@user, :as => :user, :url => main_app.update_user_password_path(@user), :html => { :method => :put }) do |f|
+      %fieldset.string
+        = f.label :password, "New password"
+        = f.password_field :password
+      %fieldset.string
+        = f.label :password_confirmation, "Confirm new password"
+        = f.password_field :password_confirmation
+      = f.submit "Change password"

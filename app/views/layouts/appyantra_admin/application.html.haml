@@ -9,7 +9,7 @@
     = javascript_include_tag "appyantra_admin/application"
     = csrf_meta_tags
     /[if lt IE 9]
-      <link rel="stylesheet" href="/appyantra_admin/ie.css" type="text/css" media="screen" />
+      <link rel="stylesheet" href="/assets/appyantra_admin/ie/ie.css" type="text/css" media="screen" />
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     :javascript
       $(document).ready(function()
@@ -50,7 +50,7 @@
     %header#header
       %hgroup
         %h1.site_title
-          %a{:href => "/"}= setting_value 'site_name', 'AppYantra Admin'
+          %a{:href => "/appyantra_admin"}= setting_value 'site_name', 'AppYantra Admin'
         %h2.section_title Dashboard
         .btn_view_site= setting_value 'website_url', '#'
     / end of header bar
@@ -70,9 +70,8 @@
         %li.icn_jump_back= link_to 'Sign out', main_app.destroy_admin_session_path, :method => :delete
       %h3 Users
       %ul.toggle
-        %li.icn_view_users= link_to 'Manage Admin Users', main_app.admin_profiles_path
-        %li.icn_view_users
-          %a{:href => "#"} Manage Website Users
+        %li.icn_view_admins= link_to 'Manage Admin Users', main_app.admin_profiles_path
+        %li.icn_view_users= link_to 'Manage Website Users', main_app.appyantra_admin_users_path
         %li.icn_profile= link_to 'Your Profile', main_app.admin_profile_path(current_admin)
       %h3 Content
       %ul.toggle
