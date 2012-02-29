@@ -19,7 +19,7 @@ describe "Admin User Authentication" do
   describe "Admin User logs in" do
 
     let(:password) { "admin123"}
-    let(:admin_user) { Factory.create(:admin, password: password) }
+    let(:admin_user) { FactoryGirl.create(:admin, password: password) }
 
     it "should succeed for the correct username and password" do
       visit new_admin_session_path

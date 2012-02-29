@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe AppyantraAdmin::PasswordsController do
 
-  let(:admin_user) { Factory.create(:admin) }
+  let(:admin_user) { FactoryGirl.create(:admin) }
 
   before(:each) do
     @request.env["devise.mapping"] = Devise.mappings[:admin]

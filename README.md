@@ -50,6 +50,25 @@ Create basic application settings by running:
 rake appyantra_admin:setup_admin
 ```
 
-Delete public/index.html
+Don't forget to delete public/index.html
 
 Now start your Rails server and hit the root url!
+
+## Using a Rich Text Editor for text_area input type
+
+AppYantra Admin currently supports CKEditor. If you want to use CKEditor for editing the content of pages then use the following rake task:
+
+```console
+rake appyantra_admin:use_rich_text_editor
+```
+
+This task adds a setting for Rich Text Editor and defaults it to CKEditor.
+
+Next, you need to copy the ckeditor directory to "app/assets/javascripts"
+
+Notes
+
+* Download CKEditor from http://ckeditor.com
+* For setup please refer to http://docs.cksource.com/CKEditor_3.x/Developers_Guide/Installation#Minimum_Setup
+* Also refer to the CKEditor Sample — Replace Textarea Elements by Class Name
+
