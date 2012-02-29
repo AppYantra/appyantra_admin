@@ -4,9 +4,9 @@ describe AppyantraAdmin::AdminSettingsController do
 
   login_admin
 
-  let(:website_link) { Factory.build(:link) }
-  let(:website_link2) { Factory.create(:link) }
-  let(:website_link_setting) { Factory.create(:admin_setting, entity_type: 'Link', entity_id: website_link2.id) }
+  let(:website_link) { FactoryGirl.build(:link) }
+  let(:website_link2) { FactoryGirl.create(:link) }
+  let(:website_link_setting) { FactoryGirl.create(:admin_setting, entity_type: 'Link', entity_id: website_link2.id) }
 
   describe "GET 'index'" do
     it "returns http success" do

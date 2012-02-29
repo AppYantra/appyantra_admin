@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe AppyantraAdmin::SessionsController do
 
-  let(:admin_user) { Factory.build(:admin) }
+  let(:admin_user) { FactoryGirl.build(:admin) }
 
   before(:each) do
     @request.env["devise.mapping"] = Devise.mappings[:admin]

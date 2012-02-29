@@ -1,6 +1,6 @@
 .grid_8
   .form_box
-    = form_for(resource, :as => resource_name, :url => user_session_path, :html => { :method => :post }) do |f|
+    = form_for(resource, :as => resource_name, :url => main_app.user_session_path, :html => { :method => :post }) do |f|
       %h3 Sign in
       .errors
         = devise_error_messages!

@@ -1,0 +1,32 @@
+- content_for :page_js do
+  $(function(){
+  $('#page_category').change(function() {
+  $('#page_category_input').val($('#page_category option:selected').val());
+  });
+  });
+=include_rich_text_editor
+= form_for(page, as: :page, url: url) do |f|
+  %fieldset.string
+    = f.label :title
+    = f.text_field :title
+  %fieldset.string
+    = f.label :slug
+    = f.text_field :slug
+  %fieldset.boolean
+    = f.radio_button :published, true
+    = f.label :published_true, 'Yes'
+    = f.radio_button :published, false
+    = f.label :published_false, 'No'
+  %fieldset.select
+    = f.label :category
+    .clear
+    - unless categories.empty?
+      = f.collection_select :category, categories, :category, :category
+      .clear
+    =f.text_field :category, class: 'select_input', id: 'page_category_input'
+  %fieldset.rich_text
+    = f.label :content
+    = f.text_area :content, class: 'ckeditor'
+  .form_footer
+    .submit_link= f.submit action_label, class: 'alt_btn'
+

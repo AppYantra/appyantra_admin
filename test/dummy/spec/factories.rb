@@ -35,4 +35,14 @@ FactoryGirl.define do
     name 'website_url'
     display_name 'Website URL'
   end
+
+  factory :page do
+    sequence(:title) { |n| "Page#{n}" }
+    published true
+    category 'static-page'
+    content 'This is a test page.'
+    association :created_by, factory: :admin
+    association :last_updated_by, factory: :admin
+    slug nil
+  end
 end

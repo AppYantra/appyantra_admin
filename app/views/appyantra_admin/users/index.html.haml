@@ -27,9 +27,7 @@
               %td
                 %input{:type => "checkbox"}/
               %td= user.id
-              %td
-                = user.first_name
-                = user.last_name
+              %td=user.display_name
               %td= user.email
               %td= display_date user.updated_at
               %td

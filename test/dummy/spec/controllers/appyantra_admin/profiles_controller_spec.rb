@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe AppyantraAdmin::ProfilesController do
 
-  let(:admin_user1) { Factory.create(:admin, email: 'admin1@appyantra.com') }
-  let(:admin_user2) { Factory.create(:admin, email: 'admin2@appyantra.com') }
-  let(:admin_user3) { Factory.create(:admin, email: 'admin3@appyantra.com') }
+  let(:admin_user1) { FactoryGirl.create(:admin, email: 'admin1@appyantra.com') }
+  let(:admin_user2) { FactoryGirl.create(:admin, email: 'admin2@appyantra.com') }
+  let(:admin_user3) { FactoryGirl.create(:admin, email: 'admin3@appyantra.com') }
   let(:admin_user_attrs) { { first_name: 'Tony', last_name: 'Stark', email: 'tony.stark@appyantra.com' }  }
   let(:new_admin_password) { { password: 'admin567', password_confirmation: 'admin567' }}
-  let(:admin_user_obj) { Factory.build(:admin, email: 'admin4@appyantra.com' ) }
+  let(:admin_user_obj) { FactoryGirl.build(:admin, email: 'admin4@appyantra.com' ) }
 
   context "Admin user is signed in" do
 

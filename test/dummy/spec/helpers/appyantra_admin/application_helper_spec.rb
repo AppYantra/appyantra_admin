@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 # Specs in this file have access to a helper object that includes
-# the AppyantraAdmin::ApplicationHelper. For example:
+# the AppyantraAdmin::PagesHelper. For example:
 #
-# describe AppyantraAdmin::ApplicationHelper do
+# describe AppyantraAdmin::PagesHelper do
 #   describe "string concat" do
 #     it "concats two strings with spaces" do
 #       helper.concat_strings("this","that").should == "this that"
@@ -14,7 +14,7 @@ describe AppyantraAdmin::ApplicationHelper do
 
   let(:field_name) { 'Name'}
   let(:asset_class_name) { 'Product'}
-  let(:product_asset) { Factory.create(:product) }
+  let(:product_asset) { FactoryGirl.create(:product) }
 
   it "setting_value should render setting value partial"
 

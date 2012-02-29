@@ -1,0 +1,7 @@
+%article.module.width_full
+  %header
+    %h3 Create New Page
+  = render partial: 'form',                                  |
+    locals: { page: @page,                                     |
+    url: main_app.appyantra_admin_pages_path(@page), action_label: 'Create' } |
+.spacer

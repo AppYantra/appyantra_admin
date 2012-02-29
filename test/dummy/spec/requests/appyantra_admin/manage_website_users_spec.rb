@@ -22,9 +22,9 @@ describe "Admin manages website users" do
 
   context "when users are created" do
 
-    let!(:user1) { Factory.create(:user) }
-    let!(:user2) { Factory.create(:user) }
-    let!(:user3) { Factory.create(:user) }
+    let!(:user1) { FactoryGirl.create(:user) }
+    let!(:user2) { FactoryGirl.create(:user) }
+    let!(:user3) { FactoryGirl.create(:user) }
 
     login_admin
 
@@ -51,7 +51,7 @@ describe "Admin manages website users" do
 
     login_admin
 
-    let(:user1) { Factory.build(:user) }
+    let(:user1) { FactoryGirl.build(:user) }
 
     it "he can create a user" do
       visit appyantra_admin_users_path
@@ -70,11 +70,11 @@ describe "Admin manages website users" do
         page.should have_content("User Profile was successfully created")
       end
 
-      "updated user".should be_displayed_on_show_page(user1)
+      "created user".should be_displayed_on_show_page(user1)
     end
 
-    let!(:user2) { Factory.create(:user) }
-    let!(:updated_user) { Factory.build(:user, first_name: 'Trey', last_name: 'Parker', email: 'trey@appyantra.com') }
+    let!(:user2) { FactoryGirl.create(:user) }
+    let!(:updated_user) { FactoryGirl.build(:user, first_name: 'Trey', last_name: 'Parker', email: 'trey@appyantra.com') }
 
     it "he can edit a user" do
       visit edit_appyantra_admin_user_path(user2)
