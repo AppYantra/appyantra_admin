@@ -1,0 +1,35 @@
+%article.module.width_full
+  %header
+    %h3.tabs_involved
+      =page.title
+    .new_button_frame
+      = form_tag main_app.edit_appyantra_admin_page_path, method: "get" do
+        = submit_tag "Edit", class: "alt_btn"
+  %ul
+    %li
+      %span.field_name
+        Slug :
+      =page.slug
+    %li
+      %span.field_name
+        Published :
+      =published_status page
+    %li
+      %span.field_name
+        Created by :
+      =link_to page.created_by.display_name, main_app.edit_appyantra_admin_user_path(page.created_by)
+    %li
+      %span.field_name
+        Last Updated by :
+      =link_to page.last_updated_by.display_name, main_app.edit_appyantra_admin_user_path(page.last_updated_by)
+    %li
+      %span.field_name
+        Category :
+      =page_category page
+  %article.module.width_full
+    %header
+      %h3 Page Content
+    .article_margin
+      =page.content.html_safe
+  .spacer
+

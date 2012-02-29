@@ -1,0 +1,7 @@
+%article.module.width_full
+  %header
+    %h3 Edit Page
+  = render partial: 'form',                                          |
+    locals: { page: @page,                                             |
+    url: main_app.appyantra_admin_page_path(@page), action_label: 'Update' } |
+.spacer

@@ -4,6 +4,8 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile ~/.gitignore_global
 
+app/assets/javascripts/ckeditor
+
 # Ignore bundler config
 /.bundle
 
@@ -19,3 +21,4 @@ db/migrate/*_create_texts.rb
 db/migrate/*_devise_create_admins.rb
 db/migrate/*_devise_create_users.rb
 db/migrate/*_add_name_to_users.rb
+db/migrate/*_create_pages.rb

@@ -75,24 +75,19 @@
         %li.icn_profile= link_to 'Your Profile', main_app.admin_profile_path(current_admin)
       %h3 Content
       %ul.toggle
-        %li.icn_new_article
-          %a{:href => "#"} New Article
-        %li.icn_edit_article
-          %a{:href => "#"} Edit Articles
-        %li.icn_categories
-          %a{:href => "#"} Categories
-        %li.icn_tags
-          %a{:href => "#"} Tags
+        %li.icn_pages
+          = link_to 'Manage Website Pages', main_app.appyantra_admin_pages_path
+          / TODO Pages icon
       %h3 Media
       %ul.toggle
         %li.icn_folder
-          %a{:href => "#"} File Manager
+          %a{:href => "#", title: 'TBD' } File Manager
         %li.icn_photo
-          %a{:href => "#"} Gallery
+          %a{:href => "#", title: 'TBD' } Gallery
         %li.icn_audio
-          %a{:href => "#"} Audio
+          %a{:href => "#", title: 'TBD' } Audio
         %li.icn_video
-          %a{:href => "#"} Video
+          %a{:href => "#", title: 'TBD' } Video
       = render partial:"/appyantra_admin/shared/assets_list", locals:{assets: AppyantraAdmin.assets}
       %footer
         %hr/

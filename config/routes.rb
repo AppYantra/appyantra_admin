@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   # mount AppyantraAdmin::Engine => "/appyantra_admin"
   match '/appyantra_admin' => 'appyantra_admin/home#index', :as => :appyantra_admin_home, :via => :get
 
-  devise_for :users, path: 'users'
+  devise_for :users, path: 'users',
+             controllers: { :sessions => 'appyantra_admin/users/sessions',
+                            passwords: 'appyantra_admin/users/passwords',
+                            registrations: 'appyantra_admin/users/registrations',
+                            confirmations: 'appyantra_admin/users/confirmations'
+             }
   
   devise_for :admin, path: 'appyantra_admin', controllers: { :sessions => 'appyantra_admin/sessions', passwords: 'appyantra_admin/passwords' }
     # match '/appyantra_admin/sign_in' => 'appyantra_admin/sessions#new', :as => :new_admin_session, :via => :get
@@ -48,4 +53,12 @@ Rails.application.routes.draw do
     resources :users
   end
   match '/appyantra_admin/users/:id/password' => 'appyantra_admin/users#update_password', :as => :update_user_password, :via => :put
+
+  # pages
+  namespace :appyantra_admin do
+    resources :pages
+  end
+
+  match '/pages/:slug' => 'appyantra_admin/pages#display', as: :display_page, via: :get
+
 end

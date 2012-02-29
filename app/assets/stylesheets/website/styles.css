@@ -154,7 +154,7 @@ ol {
 }
 
 .container_12 .grid_4 {
-    width: 300px;
+    width: 280px;
 }
 
 .container_12 .grid_5 {
@@ -882,4 +882,8 @@ p.error {
     top: 0px;
     left: 5px;
     font-size: 11px;
+}
+/* Pages */
+.page_content {
+    margin-left: 20px;
 }

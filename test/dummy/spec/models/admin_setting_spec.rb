@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe AdminSetting do
 
-  let(:link) { Factory.create(:link) }
-  let(:text_entity) { Factory.create(:text) }
-  let(:link_admin_setting) { Factory.create(:admin_setting, entity_type: 'Link', entity_id: link.id) }
+  let(:link) { FactoryGirl.create(:link) }
+  let(:text_entity) { FactoryGirl.create(:text) }
+  let(:link_admin_setting) { FactoryGirl.create(:admin_setting, entity_type: 'Link', entity_id: link.id) }
 
   it "should return the associated setting entity" do
     link_admin_setting.entity.should eq link

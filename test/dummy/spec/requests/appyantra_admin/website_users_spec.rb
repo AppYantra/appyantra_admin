@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "Website users use the website" do
 
   let(:password) { 'user123' }
-  let(:user1) { Factory.create(:user, password: password, password_confirmation: password) }
+  let(:user1) { FactoryGirl.create(:user, password: password, password_confirmation: password) }
 
   login_user
 

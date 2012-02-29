@@ -4,8 +4,8 @@ describe AppyantraAdmin::AssetsController do
 
   login_admin
 
-  let(:product_asset) { Factory.build(:product) }
-  let(:product_asset2) { Factory.create(:product) }
+  let(:product_asset) { FactoryGirl.build(:product) }
+  let(:product_asset2) { FactoryGirl.create(:product) }
   let(:asset_name) { 'Product'}
 
   describe "GET 'show'" do

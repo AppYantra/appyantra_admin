@@ -1,6 +1,6 @@
 .grid_8
   .form_box
-    = form_for(resource, :as => resource_name, :url => user_registration_path, :html => { :method => :put }) do |f|
+    = form_for(resource, :as => resource_name, :url => main_app.user_registration_path, :html => { :method => :put }) do |f|
       %h3 Edit #{resource_name.to_s.humanize}
       .errors
         = devise_error_messages!
@@ -35,7 +35,7 @@
   %h3 Cancel my account
   .hr.dotted.clearfix
   %p
-    Want to cancel your account? #{link_to "Cancel my account", user_registration_path, :confirm => "Are you sure?", :method => :delete}.
+    Want to cancel your account? #{link_to "Cancel my account", main_app.user_registration_path, :confirm => "Are you sure?", :method => :delete}.
   = link_to "Back", :back
   .clear_gap
 

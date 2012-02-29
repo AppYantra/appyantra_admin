@@ -35,4 +35,26 @@ module AppyantraAdmin::ApplicationHelper
     field_name = asset.class.column_names[1]
     asset[field_name]
   end
+
+  def page_title
+    if @page
+      @page.title
+    elsif @page_title
+      @page_title
+    end
+  end
+
+  def path_for slug
+    if Page.where(slug: slug).exists?
+      main_app.display_page_path(slug)
+    else
+      '#'
+    end
+  end
+
+  def include_rich_text_editor
+    if AdminSetting.value_of('rich_text_editor') == 'ckeditor'
+      javascript_include_tag "ckeditor/ckeditor.js"
+    end
+  end
 end

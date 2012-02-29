@@ -34,26 +34,26 @@
     #wrapper.container_12.clearfix
       / Text Logo
       %h1#logo.grid_4
-        %a{:href => "/"} Acme Inc.
+        %a{:href => "/"} The Website
       / Navigation Menu
       %ul#navigation.grid_8
         %li
-          %a{:href => "#{path_for('contact')}"}
+          %a{:href => "#"}
             %span.meta Get in touch
             = succeed "Contact Us" do
               %br/
         %li
-          %a{:href => "#{path_for('blog')}"}
+          %a{:href => "#"}
             %span.meta Latest news
             = succeed "Blog" do
               %br/
         %li
-          %a{:href => "#{path_for('portfolio')}"}
+          %a{:href => "#"}
             %span.meta Our latest work
             = succeed "Portfolio" do
               %br/
         %li
-          %a{:href => "#{path_for('about')}"}
+          %a{:href => "#"}
             %span.meta Who are we?
             = succeed "About" do
               %br/

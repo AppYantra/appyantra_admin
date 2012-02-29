@@ -16,6 +16,7 @@ module AppyantraAdmin
     end
 
     def website
+      @page_title = 'Website Home'
       render '/website/index', layout: 'application'
     end
 
