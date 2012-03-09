@@ -7,5 +7,7 @@ module AppyantraAdmin
       SessionsController.helper(ApplicationHelper)
       PasswordsController.helper(ApplicationHelper)
     end
+
+    config.autoload_paths << "#{config.root}/app/appyantra_admin/sweepers"
   end
 end

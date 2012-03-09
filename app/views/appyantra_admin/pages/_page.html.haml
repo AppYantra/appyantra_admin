@@ -16,6 +16,14 @@
       =published_status page
     %li
       %span.field_name
+        Description :
+      =page.description
+    %li
+      %span.field_name
+        Keywords :
+      = page_keywords page
+    %li
+      %span.field_name
         Created by :
       =link_to page.created_by.display_name, main_app.edit_appyantra_admin_user_path(page.created_by)
     %li

@@ -82,6 +82,7 @@ module AppyantraAdmin
 
     def set_asset
       @asset_name = params[:asset_name]
+      raise "Asset #{@asset_name} cannot be managed through Admin" unless AppyantraAdmin.assets.include? @asset_name
       @page_title = "Assets | #{@asset_name}"
       @asset_class = eval @asset_name
     end

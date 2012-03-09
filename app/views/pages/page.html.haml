@@ -1,2 +1,4 @@
+- content_for :page_meta_tags do
+  = render partial: './pages/meta_tags', locals: {page: @page}
 .page_content
-  =@page_content
+  =@page.content.html_safe

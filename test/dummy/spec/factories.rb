@@ -36,11 +36,18 @@ FactoryGirl.define do
     display_name 'Website URL'
   end
 
+  factory :page_keyword do
+    keyword 'keyword'
+  end
+
   factory :page do
     sequence(:title) { |n| "Page#{n}" }
+    description 'This is a test page'
     published true
+    layout 'application'
     category 'static-page'
     content 'This is a test page.'
+    keywords {|keywords| [keywords.association(:page_keyword)]}
     association :created_by, factory: :admin
     association :last_updated_by, factory: :admin
     slug nil
