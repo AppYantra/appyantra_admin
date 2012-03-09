@@ -22,3 +22,9 @@ db/migrate/*_devise_create_admins.rb
 db/migrate/*_devise_create_users.rb
 db/migrate/*_add_name_to_users.rb
 db/migrate/*_create_pages.rb
+db/migrate/*_add_group_to_admin_settings.rb
+db/migrate/*_create_encrypted_texts.rb
+db/migrate/*_create_short_texts.rb
+
+# will be copied during install
+config/initializers/appyantra_admin.rb
