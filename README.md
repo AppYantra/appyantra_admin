@@ -22,6 +22,13 @@ Run the install generator
 rails generate appyantra_admin:install
 ```
 
+Add this to your Rakefile
+
+```ruby
+# required to skip certain initializers
+AppyantraAdmin.rake_running = true
+```
+
 Run the admin migrations
 
 ```console

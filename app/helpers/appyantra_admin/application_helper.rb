@@ -6,7 +6,7 @@ module AppyantraAdmin::ApplicationHelper
   def setting_value(entity_name, default='Not Set')
     setting = AdminSetting.find_by_name(entity_name)
     if setting && setting.entity
-      render partial: "/appyantra_admin/shared/types/#{setting.entity.class.name.downcase}", locals: { entity: setting.entity}
+      render partial: "/appyantra_admin/shared/types/#{setting.entity.class.name.underscore}", locals: { entity: setting.entity}
     else
       default  
     end  
@@ -56,5 +56,13 @@ module AppyantraAdmin::ApplicationHelper
     if AdminSetting.value_of('rich_text_editor') == 'ckeditor'
       javascript_include_tag "ckeditor/ckeditor.js"
     end
+  end
+
+  def fetch_mail_settings
+    AdminSetting.where(group: 'Mail')
+  end
+
+  def fetch_general_settings
+    AdminSetting.where(group: 'General')
   end
 end

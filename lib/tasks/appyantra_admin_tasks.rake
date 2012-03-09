@@ -15,8 +15,8 @@ namespace :appyantra_admin do
   task :setup_admin => :environment do
     website_url = Link.create(name: 'website_url', text: 'Visit Website',
                               href: '#', title: 'Website URL')
-    site_name = Text.create(name: 'site_name', value: 'Acme Company')
-    copyright_year = Text.create(name: 'copyright_year', value: Time.now.year.to_s)
+    site_name = ShortText.create(name: 'site_name', value: 'Acme Company')
+    copyright_year = ShortText.create(name: 'copyright_year', value: Time.now.year.to_s)
     puts 'Creating Website URL setting...'
     AdminSetting.create_from_entity(website_url.name, website_url)
     puts 'Creating Site Name setting...'
@@ -27,7 +27,7 @@ namespace :appyantra_admin do
 
   desc "Adds a setting for Rich Text Editor and defaults it to CKEditor"
   task :use_rich_text_editor => :environment do
-    rich_text_editor = Text.create(name: 'rich_text_editor', value: 'ckeditor')
+    rich_text_editor = ShortText.create(name: 'rich_text_editor', value: 'ckeditor')
     AdminSetting.create_from_entity(rich_text_editor.name, rich_text_editor)
   end
 end

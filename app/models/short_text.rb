@@ -1,4 +1,4 @@
-class Text < ActiveRecord::Base
+class ShortText < ActiveRecord::Base
   def entity_value
     self.value
   end

@@ -24,7 +24,7 @@ describe AppyantraAdmin::AdminSettingsController do
 
   describe "POST 'create'" do
     it "returns http success" do
-      post 'create', {setting_name: 'website_url', entity_type: 'Link', link: website_link.attributes }
+      post 'create', { setting_name: 'website_url', entity_type: 'Link', link: website_link.attributes, group: 'General' }
       response.should be_redirect
       response.should redirect_to '/appyantra_admin/settings'
     end
