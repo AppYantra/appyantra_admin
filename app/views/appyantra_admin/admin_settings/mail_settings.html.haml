@@ -1,0 +1,7 @@
+%article.module.width_full
+  %header
+    %h3 Edit Mail Settings
+  = render partial: 'appyantra_admin/shared/hash_form',                                  |
+    locals: { hash: @mail_settings,                                     |
+    url: main_app.update_mail_settings_path, action_label: 'Update', method: :put, hash_name: 'mail_settings' } |
+.spacer

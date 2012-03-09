@@ -43,10 +43,15 @@ Rails.application.routes.draw do
   # admin settings
   match '/appyantra_admin/settings' => 'appyantra_admin/admin_settings#index', :as => :settings
   match '/appyantra_admin/settings/new' => 'appyantra_admin/admin_settings#new', :as => :new_setting, :via => :post
-  match '/appyantra_admin/settings/:entity_type/:setting_name' => 'appyantra_admin/admin_settings#create', :as => :create_setting, :via => :post
+  match '/appyantra_admin/settings/:group/:entity_type/:setting_name' => 'appyantra_admin/admin_settings#create', :as => :create_setting, :via => :post
   match '/appyantra_admin/settings/:id/edit' => 'appyantra_admin/admin_settings#edit', :as => :edit_setting, :via => :get
   match '/appyantra_admin/settings/:id' => 'appyantra_admin/admin_settings#update', :as => :update_setting, :via => :put
   match '/appyantra_admin/settings/:id' => 'appyantra_admin/admin_settings#destroy', :as => :delete_setting, :via => :delete
+  # mail settings
+  match '/appyantra_admin/mail_settings/edit' => 'appyantra_admin/admin_settings#edit_mail_settings', as: :edit_mail_settings, via: :get
+  match '/appyantra_admin/mail_settings/new' => 'appyantra_admin/admin_settings#new_mail_settings', as: :new_mail_settings, via: :get
+  match '/appyantra_admin/mail_settings' => 'appyantra_admin/admin_settings#update_mail_settings', as: :update_mail_settings, via: :put
+
 
   # users
   namespace :appyantra_admin do

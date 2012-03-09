@@ -4,4 +4,4 @@
       Create New Setting (#{@entity_type})
   = render partial: '/appyantra_admin/shared/formtastic_semantic_form', |
     locals: { form_object: @entity_object,                              |
-    url: "/appyantra_admin/settings/#{@entity_type}/#{@setting_name}" }
+    url: "/appyantra_admin/settings/#{@group}/#{@entity_type}/#{@setting_name}" }

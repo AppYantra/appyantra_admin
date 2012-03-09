@@ -1,20 +1,21 @@
 .article
   %article.module.width_3_quarter
     %header
-      %h3.tabs_involved Settings
+      %h3.tabs_involved General Settings
     .tab_container
       #tab1.tab_content
-        - @settings.each do |setting|
+        - general_settings = fetch_general_settings
+        - general_settings.each do |setting|
           = div_for setting do
             %h4= setting.display_name.humanize
             .setting_entity
-              = render partial: "/appyantra_admin/shared/types/#{setting.entity_type.downcase}", locals: { entity: setting.entity}
+              = render partial: "/appyantra_admin/shared/types/#{setting.entity_type.underscore}", locals: { entity: setting.entity}
               = link_to image_tag('/assets/appyantra_admin/icn_edit.png', title: 'Edit'), |
                 main_app.edit_setting_path(setting)                                       |
               = link_to image_tag('/assets/appyantra_admin/trash.png', title: 'Delete'), main_app.delete_setting_path(setting), confirm: 'Are you sure?', method: :delete
-          - if @settings.empty?
-            .setting_entity
-              %h4 No settings created.
+        - if general_settings.empty?
+          .setting_entity
+            %h4 No settings created.
       / end of #tab1
     / end of .tab_container
   / end of settings article
@@ -26,8 +27,29 @@
       %fieldset.string
         = label_tag :setting_name, "Name"
         = text_field_tag :setting_name
+      %fieldset.string
+        = label_tag :group, "Group"
+        = select_tag :group, options_for_select(['General'])
       %fieldset.select
         = label_tag :entity_type, "Type"
-        = select_tag :entity_type, options_for_select(['Text', 'Link'])
+        = select_tag :entity_type, options_for_select(['Text', 'Link', 'ShortText', 'EncryptedText'])
       = submit_tag "Add", class: 'alt_btn'
-.clear
+.spacer
+.article#mail_settings
+  %article.module.width_3_quarter
+    %header
+      %h3.tabs_involved Mail Settings
+    .container
+      - mail_settings = fetch_mail_settings
+      - mail_settings.each do |setting|
+        = div_for setting do
+          %h4= setting.display_name.humanize
+          .setting_entity
+            = render partial: "/appyantra_admin/shared/types/#{setting.entity_type.underscore}", locals: { entity: setting.entity}
+      - if mail_settings.empty?
+        .setting_entity
+          = link_to 'Create Mail Settings', main_app.new_mail_settings_path
+      - else
+        .setting_entity
+          = link_to 'Edit Mail Settings', main_app.edit_mail_settings_path
+
