@@ -21,4 +21,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'haml-rails'
   s.add_dependency 'devise', '~>1.5.3'
   s.add_dependency 'formtastic', '~> 2.0.2'
+  s.add_dependency 'omniauth'
+  s.add_dependency 'omniauth-facebook'
 end

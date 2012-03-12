@@ -31,5 +31,7 @@
     |
     = link_to "Sign up", main_app.new_user_registration_path
     |
+    = link_to "Facebook", user_omniauth_authorize_path(:facebook), :id => "fb_connect", :class => "fb_connect"
+    |
     = link_to "Forgot your password?", main_app.new_user_password_path
   .clear_gap

@@ -11,7 +11,6 @@ gem 'devise', '~> 1.5.3'
 gem 'haml-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'omniauth-twitter'
 
 group :development do
   gem 'pg'

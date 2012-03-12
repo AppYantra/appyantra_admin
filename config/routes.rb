@@ -5,11 +5,16 @@ Rails.application.routes.draw do
   match '/appyantra_admin' => 'appyantra_admin/home#index', :as => :appyantra_admin_home, :via => :get
 
   devise_for :users, path: 'users',
-             controllers: { :sessions => 'appyantra_admin/users/sessions',
-                            passwords: 'appyantra_admin/users/passwords',
-                            registrations: 'appyantra_admin/users/registrations',
-                            confirmations: 'appyantra_admin/users/confirmations'
-             }
+             controllers: {:sessions => 'appyantra_admin/users/sessions',
+                           passwords: 'appyantra_admin/users/passwords',
+                           registrations: 'appyantra_admin/users/registrations',
+                           confirmations: 'appyantra_admin/users/confirmations',
+                           :omniauth_callbacks => 'appyantra_admin/users/omniauth_callbacks'
+             } do
+    get '/users/auth/:provider' => 'appyantra_admin/users/omniauth_callbacks#passthru'
+  end
+
+  match '/auth/:provider/callback' => 'authentications#create'
   
   devise_for :admin, path: 'appyantra_admin', controllers: { :sessions => 'appyantra_admin/sessions', passwords: 'appyantra_admin/passwords' }
     # match '/appyantra_admin/sign_in' => 'appyantra_admin/sessions#new', :as => :new_admin_session, :via => :get
