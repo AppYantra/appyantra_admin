@@ -9,9 +9,20 @@ gem "jquery-rails"
 gem 'formtastic', '~> 2.0.2'
 gem 'devise', '~> 1.5.3'
 gem 'haml-rails'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 
 group :development do
   gem 'pg'
+end
+
+group :assets do
+  gem 'execjs'
+  gem 'therubyracer', :platforms => :ruby
+  gem 'sass-rails', "  ~> 3.1.0"
+  gem 'coffee-rails', "~> 3.1.0"
+  gem 'uglifier'
 end
 
 

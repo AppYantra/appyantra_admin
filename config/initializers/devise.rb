@@ -5,6 +5,9 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
   # config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
+  auth_config = YAML::load(File.open("./config/facebook.yml"));
+  config.omniauth :facebook, auth_config['production']['app_id'], auth_config['production']['client_secret'], :scope => "user_birthday, email"
+  config.omniauth :twitter, '72287990-9DfIht75P93Cin4r0C72b1onAKn6NkVHbnJ8g1voY', 'y7myEJHLKBtBxcmDjU3htihuZaXqXGBmx9OLNr3Ko'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"

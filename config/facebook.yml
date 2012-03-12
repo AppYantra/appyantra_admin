@@ -1,0 +1,12 @@
+development: &defaults
+  app_id: '180479415386402'
+  client_id: '180479415386402'
+  client_secret: 'cbd06c09ab7faa281e478b1929ca4f32'
+  perms: offline_access,manage_pages
+  page_id: '336757809243'
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
