@@ -9,12 +9,18 @@ module AppyantraAdmin
   # model names that can be managed as assets from the Admin dashboard.
   mattr_accessor :assets
   @@assets = []
+
   # mail setting fields
   mattr_accessor :mail_settings_fields
   @@mail_settings_fields = {}
+
   # to check if rake is running
   mattr_accessor :rake_running
   @@rake_running = false
+
+  # layouts for pages
+  mattr_accessor :page_layouts
+  @@page_layouts = nil
 
   # setup for AppYantra Admin to be used in the initializer
   def self.setup

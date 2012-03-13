@@ -5,3 +5,15 @@
     locals: { page: @page,                                             |
     url: main_app.appyantra_admin_page_path(@page), action_label: 'Update' } |
 .spacer
+%article.module.width_full.page_keywords
+  %header
+    %h3 Page Keywords
+  = form_tag(main_app.page_keywords_path(@page), method: :put) do
+    %fieldset.string
+      = text_field_tag :keywords, page_keywords(@page)
+      .clear
+      %em enter a comma separated list of keywords
+    .form_footer
+      .submit_link
+        =submit_tag 'Update', class: 'alt_btn'
+.spacer

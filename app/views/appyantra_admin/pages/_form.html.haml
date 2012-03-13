@@ -12,7 +12,11 @@
   %fieldset.string
     = f.label :slug
     = f.text_field :slug
+  %fieldset.text.small_text
+    = f.label :description
+    = f.text_area :description
   %fieldset.boolean
+    = f.label :Published
     = f.radio_button :published, true
     = f.label :published_true, 'Yes'
     = f.radio_button :published, false
@@ -23,7 +27,11 @@
     - unless categories.empty?
       = f.collection_select :category, categories, :category, :category
       .clear
-    =f.text_field :category, class: 'select_input', id: 'page_category_input'
+    =f.text_field :category, value: default_category, class: 'select_input', id: 'page_category_input'
+  %fieldset.select
+    = f.label :layout
+    .clear
+    = f.select :layout, options_for_select(page_layouts, page.layout || 'None')
   %fieldset.rich_text
     = f.label :content
     = f.text_area :content, class: 'ckeditor'
