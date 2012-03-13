@@ -1,6 +1,6 @@
-/* Essentials */
 
-html, div, map, dt, isindex, form, header, aside, section, section, article, footer {  
+/* Essentials */
+html, div, map, dt, isindex, form, header, aside, section, section, article, footer {
     display: block;  
 } 
 
@@ -1100,6 +1100,14 @@ fieldset.text {
 	height: 300px;
 }
 
+fieldset.small_text {
+    height: 110px;
+}
+
+fieldset.small_text textarea {
+    height: 80px;
+}
+
 fieldset.rich_text textarea {
     height: 500px;
 }
@@ -1110,6 +1118,12 @@ form input[type=submit] {
 
 form div.form_message {
 	margin: 20px 0 0 100px;
+}
+
+fieldset em {
+    margin: 0 0 0 10px;
+    top: 5px;
+    position: relative;
 }
 
 /* -------------------- end of forms ------------------------ */

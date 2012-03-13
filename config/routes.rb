@@ -64,6 +64,8 @@ Rails.application.routes.draw do
     resources :pages
   end
 
+  match '/appyantra_admin/pages/:id/keywords' => 'appyantra_admin/pages#update_keywords', as: :page_keywords, via: :put
   match '/pages/:slug' => 'appyantra_admin/pages#display', as: :display_page, via: :get
+  match '/page_not_found' => 'appyantra_admin/pages#page_not_found', as: :page_not_found, via: :get
 
 end

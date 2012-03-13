@@ -1,6 +1,12 @@
 require 'spec_helper'
+require 'fileutils'
 
 describe "Admin manages website pages" do
+
+  before :all do
+    # clears the cached pages if generated during dev runs
+    FileUtils.rm_rf Rails.root.join("public/pages")
+  end
 
   context "when no pages are present" do
 
@@ -52,6 +58,8 @@ describe "Admin manages website pages" do
       let!(:title) { 'About' }
       let!(:category) { 'static' }
       let!(:content) { 'This is an About page' }
+      let!(:description) { 'This is the About page description' }
+      let!(:layout) { "application" }
 
       it "is created and can be accessed" do
         visit appyantra_admin_pages_path
@@ -64,6 +72,8 @@ describe "Admin manages website pages" do
           choose 'Yes'
           fill_in 'page_category_input', with: category
           fill_in 'Content', with: content
+          select layout, from: 'Layout'
+          fill_in 'Description', with: description
           click_button "Create"
         end
 
@@ -76,8 +86,8 @@ describe "Admin manages website pages" do
         saved_page.should be
 
         visit display_page_path(saved_page.slug)
-
         page.should have_content(content)
+        page.should have_xpath("//head/meta[@name='description'][@content='" + description + "']")
       end
     end
 
@@ -168,6 +178,32 @@ describe "Admin manages website pages" do
 
       end
     end
+
+    describe "when admin add keywords to a page" do
+
+      let!(:page6) { FactoryGirl.create(:page, slug: 'test_slug') }
+      let!(:keywords) { 'keyword1, keyword2' }
+
+      it "it generates a meta tag for keywords" do
+        visit edit_appyantra_admin_page_path(page6)
+
+        within ".page_keywords" do
+          fill_in 'keywords', with: keywords
+          click_button "Update"
+        end
+
+        within "section#main.column" do
+          page.should have_content("Page keywords were successfully updated")
+          page.should have_content(keywords)
+        end
+
+        visit display_page_path(page6.slug)
+
+        page.should have_xpath("//head/meta[@name='keywords'][@content='" + keywords + "']")
+
+      end
+    end
+
   end
 
 end

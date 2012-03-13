@@ -3,6 +3,15 @@ module AppyantraAdmin::PagesHelper
     Page.where('category is not null').select('distinct category')
   end
 
+  def default_category
+    page = Page.where('category is not null').select('distinct category').first
+    if page
+      page.category
+    else
+      ''
+    end
+  end
+
   def published_status page
     if page.published
       'Yes'
@@ -17,5 +26,13 @@ module AppyantraAdmin::PagesHelper
     else
       'Not specified.'
     end
+  end
+
+  def page_keywords(page)
+    (page.keywords.collect{|pk| pk.keyword}).join(', ')
+  end
+
+  def page_layouts
+    ['None'] + AppyantraAdmin.page_layouts
   end
 end
