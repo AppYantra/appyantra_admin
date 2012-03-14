@@ -1,7 +1,7 @@
 =form_tag(url, method: method) do
   - hash.each do |field,value|
     %fieldset.string
-      =label_tag "#{hash_name}[#{field}]".to_sym, field.humanize
+      =label_tag "#{hash_name}[#{field}]".to_sym, field.to_s.humanize
       =text_field_tag "#{hash_name}[#{field}]", value
   =submit_tag action_label, class: 'alt_btn'
 .spacer

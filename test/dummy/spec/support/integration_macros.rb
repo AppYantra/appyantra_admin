@@ -6,7 +6,8 @@ module IntegrationMacros
       if current_path == new_admin_session_path.to_s
         within(".mini_form_box") do
           password = 'admin123'
-          admin_user = Admin.create(email: "admin#{Time.now.to_f}@appyantra.com", password: password, password_confirmation: password)
+          admin_user = Admin.create(email: "admin#{Time.now.to_f}@appyantra.com", password: password, password_confirmation: password,
+                                    first_name: 'Admin', last_name: 'User')
           fill_in 'Email', with: admin_user.email
           fill_in 'Password', with: password
           click_button "Sign in"

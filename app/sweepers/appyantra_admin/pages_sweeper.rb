@@ -14,7 +14,7 @@ module AppyantraAdmin
     private
 
     def expire_page_for(page)
-      expire_page main_app.display_page_path(page.slug) if page
+      expire_page main_app.display_page_path(page.slug) if page && page.slug
     end
   end
 end

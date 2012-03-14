@@ -3,10 +3,6 @@ require 'support/matchers/user_matcher'
 
 describe "Admin manages website users" do
 
-  before :all do
-    ActionMailer::Base.default_url_options = { :host => 'localhost:3000' }
-  end
-
   context "when no users are present" do
 
     login_admin

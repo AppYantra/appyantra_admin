@@ -1,9 +1,74 @@
-.article
-  %article.module.width_full
-    %header
-      %h3 Welcome to AppYantra Admin.
-    %p
-      This engine is work in progress.
-      %br/
-      Currently you can create and manage Admin users, settings and Assets.
-  .spacer
+%article.module.width_full
+  %header
+    %h3 Stats (Dummy data, TBD)
+  .module_content
+    %article.stats_graph
+      %img{:alt => "", :height => "140", :src => "http://chart.apis.google.com/chart?chxr=0,0,3000&chxt=y&chs=520x140&cht=lc&chco=76A4FB,80C65A&chd=s:Tdjpsvyvttmiihgmnrst,OTbdcfhhggcTUTTUadfk&chls=2|2&chma=40,20,20,30", :width => "520"}/
+    %article.stats_overview
+      .overview_today
+        %p.overview_day Today
+        %p.overview_count 1,876
+        %p.overview_type Hits
+        %p.overview_count 2,103
+        %p.overview_type Views
+      .overview_previous
+        %p.overview_day Yesterday
+        %p.overview_count 1,646
+        %p.overview_type Hits
+        %p.overview_count 2,054
+        %p.overview_type Views
+    .clear
+/ end of stats article
+.spacer
+%article.module.width_3_quarter.activity_feeds
+  %header
+    %h3 Activity Feed
+  .module_content
+    - activity_feeds = fetch_activity_feeds
+    - activity_feeds.each do |activity_feed|
+      .message
+        %p
+          - if activity_feed.actor
+            -# if actor is present the feed will be of type - actor created ItemType Item
+            %strong=activity_feed.actor
+            =activity_feed.activity
+            %strong=activity_feed.item_type
+            %i=activity_feed.item
+          - else
+            -# if actor is not present the feed will be of type - ItemType Item was created
+            %strong=activity_feed.item_type
+            %i=activity_feed.item
+            was
+            =activity_feed.activity
+        %p
+          at
+          %strong=display_date(activity_feed.created_at)
+    - if activity_feeds.empty?
+      %p No activity feeds to display.
+%article.module.width_quarter
+  %header
+    %h3 Messages (TBD)
+  .message_list
+    .module_content
+      .message
+        %p Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor.
+        %p
+          %strong John Doe
+      .message
+        %p Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor.
+        %p
+          %strong John Doe
+      .message
+        %p Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor.
+        %p
+          %strong John Doe
+      .message
+        %p Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor.
+        %p
+          %strong John Doe
+  %footer
+    %form.post_message
+      %input{:onfocus => "if(!this._haschanged){this.value=''};this._haschanged=true;", :type => "text", :value => "Message"}
+        %input.btn_post_message{:type => "submit", :value => ""}/
+/ end of messages article
+/ end of stats article
