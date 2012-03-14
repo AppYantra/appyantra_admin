@@ -28,7 +28,7 @@ describe "Admin User Authentication" do
         fill_in 'Password', with: password
         click_button "Sign in"
       end
-      find('header h3').should have_content('Welcome to AppYantra Admin.')
+      find('.breadcrumbs_container .breadcrumbs .current').should have_content('Dashboard')
     end
 
     it "should fail for an incorrect username" do

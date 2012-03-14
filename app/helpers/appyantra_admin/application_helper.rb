@@ -1,6 +1,6 @@
 module AppyantraAdmin::ApplicationHelper
   def display_date(date)
-    date.strftime("%d-%m-%Y %H:%M")
+    date.strftime("%m-%d-%Y %H:%M")
   end
   
   def setting_value(entity_name, default='Not Set')
@@ -58,11 +58,16 @@ module AppyantraAdmin::ApplicationHelper
     end
   end
 
-  def fetch_mail_settings
-    AdminSetting.where(group: 'Mail')
+  def google_analytics_script
+    analytics_settings = AdminSetting.group_settings('Google Analytics')
+    if analytics_settings.has_key?(:tracking_code) && analytics_settings.has_key?(:domain)
+      tracking_code = analytics_settings[:tracking_code]
+      domain = analytics_settings[:domain]
+      render partial: '/pages/google_analytics', locals: { analytics_tracking_code: tracking_code, analytics_domain: domain }
+    end
   end
 
-  def fetch_general_settings
-    AdminSetting.where(group: 'General')
+  def fetch_activity_feeds
+    ActivityFeed.latest
   end
 end

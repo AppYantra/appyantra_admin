@@ -30,4 +30,18 @@ namespace :appyantra_admin do
     rich_text_editor = ShortText.create(name: 'rich_text_editor', value: 'ckeditor')
     AdminSetting.create_from_entity(rich_text_editor.name, rich_text_editor)
   end
+
+  desc "Create settings for Google Analytics"
+  task :setup_google_analytics => :environment do
+    unless AdminSetting.exists?(group: 'Google Analytics')
+      tracking_code = ShortText.create(name: 'tracking_code', value: ENV['tracking_code'])
+      domain = ShortText.create(name: 'domain', value: ENV['domain'])
+      puts 'Creating Tracking Code setting...'
+      AdminSetting.create_from_entity(tracking_code.name, tracking_code, 'Google Analytics')
+      puts 'Creating Domain Name setting...'
+      AdminSetting.create_from_entity(domain.name, domain, 'Google Analytics')
+      # clears all the cached pages
+      FileUtils.rm_rf Rails.root.join("public/pages")
+    end
+  end
 end

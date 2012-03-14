@@ -27,6 +27,7 @@ db/migrate/*_create_encrypted_texts.rb
 db/migrate/*_create_short_texts.rb
 db/migrate/*_add_seo_to_pages.rb
 db/migrate/*_create_keywords.rb
+db/migrate/*_create_activity_feeds.rb
 
 # will be copied during install
 config/initializers/appyantra_admin.rb

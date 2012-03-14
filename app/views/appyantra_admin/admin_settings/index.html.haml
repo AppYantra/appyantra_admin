@@ -1,10 +1,11 @@
-.article
-  %article.module.width_3_quarter
-    %header
-      %h3.tabs_involved General Settings
-    .tab_container
-      #tab1.tab_content
-        - general_settings = fetch_general_settings
+- settings_groups.each do |settings_entity|
+  - settings_group = settings_entity.group
+  .article
+    %article.module.width_3_quarter
+      %header
+        %h3.tabs_involved #{settings_group} Settings
+      .tab
+        - general_settings = fetch_group_settings(settings_group)
         - general_settings.each do |setting|
           = div_for setting do
             %h4= setting.display_name.humanize
@@ -17,8 +18,7 @@
           .setting_entity
             %h4 No settings created.
       / end of #tab1
-    / end of .tab_container
-  / end of settings article
+    / end of settings article
 %article.module.width_quarter
   %header
     %h3 Add a new setting
@@ -29,7 +29,7 @@
         = text_field_tag :setting_name
       %fieldset.string
         = label_tag :group, "Group"
-        = select_tag :group, options_for_select(['General'])
+        = select_tag :group, options_for_select(['General', 'Google Analytics'])
       %fieldset.select
         = label_tag :entity_type, "Type"
         = select_tag :entity_type, options_for_select(['Text', 'Link', 'ShortText', 'EncryptedText'])
@@ -40,7 +40,7 @@
     %header
       %h3.tabs_involved Mail Settings
     .container
-      - mail_settings = fetch_mail_settings
+      - mail_settings = fetch_group_settings('Mail')
       - mail_settings.each do |setting|
         = div_for setting do
           %h4= setting.display_name.humanize
@@ -52,4 +52,5 @@
       - else
         .setting_entity
           = link_to 'Edit Mail Settings', main_app.edit_mail_settings_path
-
+.clear
+.spacer
