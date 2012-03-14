@@ -6,7 +6,7 @@ module AppyantraAdmin
     # breadcrumbs
     before_filter(only: [:index, :new, :edit, :new_mail_settings, :edit_mail_settings]) { |c| c.add_breadcrumb(['Home', main_app.appyantra_admin_home_path])}
     before_filter(only: [:new, :edit, :new_mail_settings, :edit_mail_settings]) { |c| c.add_breadcrumb(['Settings', main_app.settings_path])}
-    
+
     def index
       @page_title = 'Settings'
       current_breadcrumb @page_title

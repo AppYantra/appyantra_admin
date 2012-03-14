@@ -57,6 +57,12 @@ Create basic application settings by running:
 rake appyantra_admin:setup_admin
 ```
 
+Setup Google Analytics by running:
+
+```console
+rake appyantra_admin:setup_google_analytics tracking_code='YOUR_TRACKING_CODE' domain='DOMAIN'
+```
+
 Don't forget to delete public/index.html
 
 Now start your Rails server and hit the root url!

@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe "Admin user manages mailer settings" do
 
+  after :all do
+    ActionMailer::Base.delivery_method = :test
+  end
+
   describe "when an admin is logged in" do
 
     login_admin
@@ -49,6 +53,17 @@ describe "Admin user manages mailer settings" do
           page.should have_content(authentication)
           page.should have_content(enable_starttls_auto)
         end
+
+        ActionMailer::Base.default_url_options[:host].should == default_url_host
+        ActionMailer::Base.delivery_method.should == delivery_method.to_sym
+        smtp_settings = ActionMailer::Base.smtp_settings
+        smtp_settings[:address].should == address
+        smtp_settings[:port].should == port.to_i
+        smtp_settings[:domain].should == domain
+        smtp_settings[:user_name].should == user_name
+        smtp_settings[:password].should == password
+        smtp_settings[:authentication].should == authentication
+        smtp_settings[:enable_starttls_auto].should == (enable_starttls_auto == "true")
 
       end
     end

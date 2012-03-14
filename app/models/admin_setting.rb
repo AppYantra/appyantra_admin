@@ -1,13 +1,19 @@
 class AdminSetting < ActiveRecord::Base
 
   validates :name, uniqueness: { scope: :group }
+
+  scope :managed_groups, where("admin_settings.group != 'Mail'").select("distinct admin_settings.group")
+
+  after_create :clear_pages
+  after_update :clear_pages
+  after_destroy :clear_pages
   
   def entity
     type_class = eval self.entity_type
     type_class.find self.entity_id
   end
 
-  def self.create_from_entity(name, entity, display_name=name.titleize, group='General')
+  def self.create_from_entity(name, entity, group='General', display_name=name.titleize)
     self.create(name: name, display_name: display_name,
                 entity_type: entity.class.name,
                 entity_id: entity.id,
@@ -34,7 +40,7 @@ class AdminSetting < ActiveRecord::Base
         field_class = eval field_type
         field = field_class.create(name: field_name, value: nil)
         group_settings[field_name] = nil
-        AdminSetting.create_from_entity(field_name, field, field_name.humanize, group)
+        AdminSetting.create_from_entity(field_name, field, group, field_name.humanize)
       end
     end
     group_settings
@@ -44,7 +50,8 @@ class AdminSetting < ActiveRecord::Base
     group_settings = AdminSetting.where(group: group)
     settings_hash = Hash.new
     group_settings.each do |setting|
-      settings_hash[setting.name] = setting.entity.entity_value
+      entity_value = setting.entity.entity_value
+      settings_hash[setting.name.to_sym] = entity_value
     end
     settings_hash
   end
@@ -53,6 +60,15 @@ class AdminSetting < ActiveRecord::Base
     settings_hash.each do |setting_name, setting_value|
       setting = AdminSetting.find_by_group_and_name(group, setting_name)
       setting.entity.entity_value = setting_value
+    end
+  end
+
+  private
+
+  def clear_pages
+    if self.group == 'Google Analytics'
+      # clears all the cached pages
+      FileUtils.rm_rf Rails.root.join("public/pages")
     end
   end
 end

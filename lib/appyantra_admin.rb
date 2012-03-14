@@ -29,7 +29,6 @@ module AppyantraAdmin
 
   def self.setup_mailer
     mailer_settings = AdminSetting.group_settings 'Mail'
-    password = AppyantraAdmin::Crypto.decrypt(mailer_settings[:password]) if mailer_settings[:password]
     ActionMailer::Base.default_url_options = { :host => 'localhost:3000' }
     unless mailer_settings.empty?
       ActionMailer::Base.default_url_options = { :host => mailer_settings[:default_url_host] }
@@ -39,7 +38,7 @@ module AppyantraAdmin
           :port => (mailer_settings[:port] || "587").to_i,
           :domain => mailer_settings[:domain],
           :user_name => mailer_settings[:user_name],
-          :password => (password || nil),
+          :password => mailer_settings[:password],
           :authentication => mailer_settings[:authentication],
           :enable_starttls_auto => (mailer_settings[:enable_starttls_auto] == "true")
       }
