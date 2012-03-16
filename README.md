@@ -2,18 +2,16 @@
 
 Rails 3 engine for managing an app's assets, users, pages, blog, SEO and Social Media Integration.
 
-This project uses MIT-LICENSE.
-
 ## Requirements
 
 Rails 3.1 or later.
 
 ## Getting started
 
-I haven't released this as a GEM so you need to clone this repository and add this to your GEMFILE
+Add this to your GEMFILE:
 
 ```console
-gem 'appyantra_admin', path: 'path/to/appyantra_admin'
+gem 'appyantra_admin'
 ```
 
 Run the install generator
@@ -63,6 +61,8 @@ Setup Google Analytics by running:
 rake appyantra_admin:setup_google_analytics tracking_code='YOUR_TRACKING_CODE' domain='DOMAIN'
 ```
 
+If you want to use the default theme for your website then delete the application layout file from your layouts.
+
 Don't forget to delete public/index.html
 
 Now start your Rails server and hit the root url!
@@ -84,4 +84,18 @@ Notes
 * Download CKEditor from http://ckeditor.com
 * For setup please refer to http://docs.cksource.com/CKEditor_3.x/Developers_Guide/Installation#Minimum_Setup
 * Also refer to the CKEditor Sample — Replace Textarea Elements by Class Name
+
+### Project Info
+
+[AppYantra Admin] (http://www.appyantra.com/appyantra_admin) has been created by [Govind Naroji] (https://github.com/gnaroji) with contributions from [Gautam Naroji] (https://github.com/narojigautam).
+
+It is maintained by [AppYantra] (http://www.appyantra.com)
+
+For the Admin UI it uses the free [HTML5 Admin Template] (http://medialoot.com/item/html5-admin-template) taken from MediaLoot.
+
+For the Default Website, it uses the free HTML theme [Aurelius] (http://www.csstemplatesfree.org/aurelius.html) taken from CSS Templates.
+
+## License
+
+MIT License. Copyright 2012 AppYantra. http://www.appyantra.com
 

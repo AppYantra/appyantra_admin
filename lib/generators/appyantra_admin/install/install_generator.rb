@@ -3,7 +3,7 @@ class AppyantraAdmin::InstallGenerator < Rails::Generators::Base
 
   desc "Creates an AppyantraAdmin initializer and copies related files to your application."
 
-  def install_admin
+  def install
     #copy_initializer
     template "appyantra_admin.rb", "config/initializers/appyantra_admin.rb"
     puts "Copying migrations..."
@@ -24,7 +24,7 @@ class AppyantraAdmin::InstallGenerator < Rails::Generators::Base
   def add_appyantra_admin_routes
     appyantra_admin_route = %Q{mount AppyantraAdmin::Engine => "/appyantra_admin"}
     appyantra_admin_route << "\n  "
-    appyantra_admin_route << %Q{root :to => 'appyantra_admin/home#index'}
+    appyantra_admin_route << %Q{root :to => 'appyantra_admin/home#website'}
     route appyantra_admin_route
   end
 
