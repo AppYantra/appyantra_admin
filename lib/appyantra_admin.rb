@@ -28,6 +28,8 @@ module AppyantraAdmin
   end
 
   def self.setup_mailer
+    return unless ActiveRecord::Base.connection.table_exists? 'admin_settings'
+    # get the mailer settings from the DB and set them in ActionMailer
     mailer_settings = AdminSetting.group_settings 'Mail'
     ActionMailer::Base.default_url_options = { :host => 'localhost:3000' }
     unless mailer_settings.empty?
