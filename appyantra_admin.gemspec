@@ -13,8 +13,8 @@ Gem::Specification.new do |s|
   s.summary     = %Q{Rails 3 engine for managing an app's assets, users, pages, blog, SEO and Social Media Integration }
   s.description = %Q{Rails 3 engine for managing an app's assets, users, pages, blog, SEO and Social Media Integration }
 
-  s.files       = 'git ls-files'.split("\n")
-  s.test_files = Dir["test/**/*"]
+  s.files       = `git ls-files`.split("\n")
+  s.test_files = `git ls-files -- test/**/*`.split("\n")
 
   s.add_dependency "rails", "~> 3.1.3"
   s.add_dependency 'warden'
