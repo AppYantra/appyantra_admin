@@ -1,8 +1,8 @@
 
 /* Essentials */
 html, div, map, dt, isindex, form, header, aside, section, section, article, footer {
-    display: block;  
-} 
+    display: block;
+}
 
 html, body {
 height: 100%;
@@ -950,7 +950,7 @@ font-size: 14px;}
 .new_button_frame {
 	margin: 5px 10px 0 0;
 	padding: 0;
-	float: right;	
+	float: right;
 }
 p.field_name {
 	color: #900;
@@ -1029,7 +1029,7 @@ fieldset select {
 
 
 fieldset input[type=checkbox] {
-margin: 5px 0 0 10px;	
+margin: 5px 0 0 10px;
 }
 
 fieldset input[type=text]:focus, fieldset input[type=email]:focus, fieldset input[type=password]:focus {
@@ -1131,7 +1131,7 @@ fieldset em {
 /* -------------------- start landing page styles ------------------------ */
 
 .landing_container {
-    margin-left: 350px;	
+    margin-left: 350px;
 }
 
 .landing_header {
@@ -1147,7 +1147,7 @@ fieldset em {
 /* -------------------- end landing page styles ------------------------ */
 
 .setting_entity {
-  
+
 }
 
 .setting_entity a {
@@ -1170,22 +1170,3 @@ fieldset em {
 .article_margin {
     margin-left: 10px;
 }
-
-/*
-.fancy_button {
-background: #D0D1D4 url(/assets/appyantra_admin/btn_submit_2.png) repeat-x;
-border: 1px solid#30B0C8;
--webkit-box-shadow: 0 1px 0 #fff;
--moz-box-shadow: 0 1px 0 #fff;
-box-shadow: 0 1px 0 #fff;
-font-weight: bold;
-height: 22px;
--webkit-border-radius: 5px;
--moz-border-radius: 5px;
-border-radius: 5px;
-padding: 0 10px;
-color: #001217 !important;
-text-decoration: none !important;
-text-shadow: 0 1px 0 #6CDCF9;
-cursor: pointer;
-}/*
