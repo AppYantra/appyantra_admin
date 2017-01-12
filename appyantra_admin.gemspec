@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.files       = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- test/**/*`.split("\n")
 
-  s.add_dependency "rails", "~> 3.1.3"
+  s.add_dependency "rails", "~> 3.2.8"
   s.add_dependency 'warden'
   s.add_dependency 'haml-rails'
   s.add_dependency 'devise', '~>1.5.3'
